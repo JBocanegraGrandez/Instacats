@@ -4,9 +4,24 @@ const router = express.Router();
 const User = require('../../models/User');
 const bcrypt = require('bcryptjs');
 const keys = require('../../config/keys');
+const passport = require('passport');
 
+// User route test via get
 router.get("/test", (req, res) => res.json({ msg: "This is the users route"}));
 
+
+// User auth route test via get
+router.get("/current", passport.authenticate('jwt', {session: false}), (req, res) => {
+    console.log(req.user);
+   return res.json({
+       id: req.user.id,
+       username: req.user.username,
+       email: req.user.username
+    });
+})
+
+
+// User register route
 router.post("/register", (req, res) => {
     User.findOne({email: req.body.email})
         .then(user => {
@@ -32,6 +47,8 @@ router.post("/register", (req, res) => {
             }
         } )
 });
+
+//User login route
 
 router.post("/login", (req, res) => {
     const email = req.body.email;
