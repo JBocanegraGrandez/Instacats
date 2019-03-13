@@ -7,7 +7,7 @@ module.exports = function validatePostInput(data) {
     data.caption = validText(data.text) ? data.text : '';
     data.img = validText(data.img) ? data.img : '';
 
-    if (!Validator.isLength(data.caption {min: 0, max: 2200})) {
+    if (!Validator.isLength(data.caption, {min: 0, max: 2200})) {
         errors.caption = "Caption is too long, maximun is 2200 chars"
     }
 
