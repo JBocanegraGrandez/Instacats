@@ -4,7 +4,7 @@ const validText = require('./valid-text');
 module.exports = function validatePostInput(data) {
     let errors = {}
 
-    data.caption = validText(data.text) ? data.text : '';
+    data.caption = validText(data.caption) ? data.caption : '';
     data.img = validText(data.img) ? data.img : '';
 
     if (!Validator.isLength(data.caption, {min: 0, max: 2200})) {
