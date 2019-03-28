@@ -15,10 +15,10 @@ class LoginForm extends React.Component {
         this.renderErrors = this.renderErrors.bind(this);
     }
 
-    // Once the user has been authenticated, redirect to Posts
+    // Once the user has been authenticated, redirect to Profile
     componentWillReceiveProps(nextProps) {
         if (nextProps.currentUser === true) {
-            this.props.history.push('/posts');
+            this.props.history.push('/profile');
         }
 
         // Errors update
