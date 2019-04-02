@@ -1,0 +1,181 @@
+.Profile-wrapper {
+    background-color: #fafafa;
+}
+
+.Profile-holder {
+    box-sizing: content-box;
+    padding: 60px 20px 0;
+    width: calc(100% - 40px);
+}
+
+.Profile-holder-header{
+    display: flex;
+    margin-bottom: 44px;
+    flex-direction: row;
+}
+
+.Profile-holder-header-picture-wrapper {
+    flex-basis: 0;
+    flex-grow: 1;
+    margin-right: 30px;
+}
+
+.Profile-holder-header-picture-holder {
+    height: 150px;
+    width: 150px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.Profile-holder-header-picture{
+    background-color: #fafafa;
+    border-radius: 50%;
+    box-sizing: border-box;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.Profile-holder-header-details{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 30px;
+    color: #262626;
+    flex-shrink: 1;
+    flex-grow: 2;
+    min-width: 0;
+}
+
+.Profile-holder-header-details-main{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-shrink: 1;
+    min-width: 0;
+    margin-bottom: 20px;
+}
+
+.Profile-holder-header-details-info{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.Profile-holder-header-details-details{
+    display: block;
+    font-size: 16px;
+    line-height: 24px;
+    word-wrap: break-word;
+}
+
+.Profile-holder-header-details-main h1{
+    font-size: 28px;
+    line-height: 32px;
+    margin: -5px 0 -6px;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #262626;
+    font-weight: 300;
+}
+
+.Edit-profile{
+    margin-left: 20px;
+    text-decoration: none;
+    display: block;
+}
+
+.Edit-profile-button{
+    background-color: transparent;
+    border: 1px solid #dbdbdb;
+    color: #262626;
+    border-radius: 4px;
+    display: block;
+    font-weight: 600;
+    padding: 5px 9px;
+    text-align: center;
+    user-select: none;
+}
+
+.Profile-pic {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.Profile-stats-info {
+    font-size: 16px;
+    margin-right: 40px;
+}
+
+.stats-numbers{
+    color: #262626;
+    font-weight: 600;
+}
+
+.Full-name{
+    display: inline;
+    font-weight: 600;
+}
+
+.Profile-holder-menu{
+    border-top: 1px solid #efefef;
+    align-items: center;
+    color: #999;
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+    font-weight: 600;
+    justify-content: center;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.Profile-holder-menu-item {
+    color: #999;
+    margin-right: 60px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    height: 52px;
+    justify-content: center;
+    text-transform: uppercase;
+}
+
+.showing {
+    color: #262626;
+}
+
+.Profile-holder-menu-item-span {
+    display: flex;
+    align-items: center;
+}
+
+.SpritePhotoGridActive {
+    background-repeat: no-repeat;
+    background-size: 410px 396px;
+    background-position: -189px -366px;
+    height: 12px;
+    width: 12px;
+    background-image: url(https://www.instagram.com/static/bundles/es6/sprite_core_2x_6ba81dcece9b.png/6ba81dcece9b.png)
+}
+
+.SpriteTagged {
+    background-repeat: no-repeat;
+    background-size: 410px 396px;
+    background-position: -315px -319px;
+    height: 12px;
+    width: 12px;
+    background-image: url(https://www.instagram.com/static/bundles/es6/sprite_core_2x_6ba81dcece9b.png/6ba81dcece9b.png)
+}
+
+.Profile-holder-menu-item-text {
+    margin-left: 6px;
+
+}
