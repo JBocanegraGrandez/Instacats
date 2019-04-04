@@ -21,8 +21,25 @@ class Profile extends React.Component {
         this.setState({ posts: newState.posts });
     }
 
+    isEmpty(){
+        if (this.state.post.length === 0) {
+            return (
+                <div>No Posts</div>
+            )
+        } else {
+            return (
+                <div>
+                    <h2>All of this User's Posts</h2>
+                    {this.state.posts.map(post => (
+                        <PostBox key={post._id} url={post.img} />
+                    ))}
+                </div>
+            )
+        }
+    }
+    
+
     render(){
-        if (this.state.posts.length === 0) {
             return (
               <div className="Profile-wrapper">
                 <div className="Profile-holder">
@@ -88,17 +105,9 @@ class Profile extends React.Component {
                 <div>This user has no Posts</div>
               </div>
             );
-        } else {
-            return (
-                <div>
-                 <h2>All of this User's Posts</h2>
-                 {this.state.posts.map(post => (
-                     <PostBox key={post._id} url={post.img} />
-                 ))}
-                </div>
-            );
+        ;
         }
-    }
+    
 }
 
 export default Profile;

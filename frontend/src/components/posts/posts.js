@@ -24,12 +24,11 @@ class Post extends React.Component {
             return (<div>The are no Posts</div>)
         } else {
             return (
-                <div>
-                    <h2>All Posts</h2>
+                <section className="Postbox-narrow">
                     {this.state.posts.map(post =>(
                         <PostBox key={post._id} url={post.img} />
                     ))}
-                </div>
+                </section>
             );
         }
     }
