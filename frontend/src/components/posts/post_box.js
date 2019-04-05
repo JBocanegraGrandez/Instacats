@@ -2,6 +2,25 @@ import React from 'react';
 import "./post.css"
 
 class PostBox extends React.Component {
+    
+    getDatefromString(str) {
+        let MONTHS = {
+            "01": "January",
+            "02": "February",
+            "03": "March",
+            "04": "April",
+            "05": "May",
+            "06": "June",
+            "07": "July",
+            "08": "August",
+            "09": "September",
+            "10": "October",
+            "11": "November",
+            "12": "December"
+        }
+
+        return MONTHS[str[5]+str[6]] +" " + str[8] +str[9] +", " + str.slice(0,4)
+    }
     render() {
         return (
           <article className="Postbox-article">
@@ -16,7 +35,7 @@ class PostBox extends React.Component {
               </div>
               <div className="Postbox-header-author-details">
                   <div className="Postbox-header-username">
-                    <a>username</a>
+                    <a>{this.props.author}</a>
                   </div>
                   <div className="Postbox-header-location">
                     <h2><a>location</a></h2>
@@ -38,13 +57,12 @@ class PostBox extends React.Component {
                     <ul>
                         <li className="Li-comment">
                             <div className="Div-comment">
-                                <h2 className="username"><a className="username-link">username</a></h2><span>comment</span>
+                                <h2 className="username"><a className="username-link">{this.props.author}</a></h2><span>{this.props.caption}</span>
                             </div>
                         </li>
                     </ul>
                 </div>
-                <div className="Postbox-date">date here</div>
-            </div>
+                <div className="Postbox-date"> {this.getDatefromString(this.props.date)}</div>
             <section className="Postbox-input">
                 <div className="Postbox-form-wrapper">
                     <form className="Postbox-form">
@@ -53,6 +71,7 @@ class PostBox extends React.Component {
                     </form>
                 </div>
             </section>
+            </div>
           </article>
         );
     }

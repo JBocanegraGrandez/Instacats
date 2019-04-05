@@ -158,6 +158,7 @@
 .Postbox-stats-wrapper {
     padding-left: 16px;
     padding-right: 16px;
+    margin-bottom: 8px;
 }
 
 .Postbox-stats-div {
@@ -217,7 +218,6 @@
 .Postbox-date {
     padding-left: 16px;
     display: block;
-    margin-bottom: 4px;
     color: #999;
     margin-bottom: 5px;
     text-transform: uppercase;

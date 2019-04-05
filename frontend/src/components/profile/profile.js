@@ -101,8 +101,8 @@ class Profile extends React.Component {
                     </a>
                   </div>
                   <div className="Profile-holder-posts" />
+                  <div>This user has no Posts</div>
                 </div>
-                <div>This user has no Posts</div>
               </div>
             );
         ;

@@ -26,7 +26,7 @@ class Post extends React.Component {
             return (
                 <section className="Postbox-narrow">
                     {this.state.posts.map(post =>(
-                        <PostBox key={post._id} url={post.img} />
+                        <PostBox key={post._id} url={post.img} caption={post.caption} author={post.user} date={post.date}/>
                     ))}
                 </section>
             );
