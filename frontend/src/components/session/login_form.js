@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import './session.css'
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -59,25 +60,54 @@ class LoginForm extends React.Component {
 
     render() {
         return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <div>
-                        <input type="text"
-                            value={this.state.email}
-                            onChange={this.update('email')}
-                            placeholder="Email"
-                        />
-                        <br />
-                        <input type="password"
-                            value={this.state.password}
-                            onChange={this.update('password')}
-                            placeholder="Password"
-                        />
-                        <br />
-                        <input type="submit" value="Submit" />
-                        {this.renderErrors()}
-                    </div>
-                </form>
+            <div className="Login-form-wrapper">
+                <div className="Login-form-holder">
+                    <article className="Login-item-wrapper">
+                        <div className="Login-item-holder">
+                            <div className="Login-area-1">
+                                <h1>Instaram</h1>
+                                <div className="Login-form-items">
+                                    <form onSubmit={this.handleSubmit}>
+                                        <div className="Login-form-item-1"></div>
+                                        <div className="Login-input-holder">
+                                            <div className="Login-input-wrapper">
+                                                <div className="Login-input-input">
+                                                    <label className="Login-text-input-label" for="email">Email</label>
+                                                    <input id="email" className="Login-text-input" type="text"
+                                                        value={this.state.email}
+                                                        onChange={this.update('email')}
+                                                        placeholder="Email"
+                                                    />
+                                                </div>
+                                                <div className="Login-input-margin"></div>
+                                            </div>
+                                        </div>
+                                        <div className="Login-input-holder">
+                                            <div className="Login-input-wrapper">
+                                                <div className="Login-input-input">
+                                                    <label className="Login-text-input-label" for="password">Password</label>
+                                                    <input id="password" className="Login-text-input" type="password"
+                                                        value={this.state.password}
+                                                        onChange={this.update('password')}
+                                                        placeholder="Password"
+                                                    />
+                                                </div>
+                                                <div className="Login-input-margin"></div>
+                                            </div>
+                                        </div>
+                                        <div className="Login-submit-button-holder">
+                                            <button  className="Login-submit-button" type="submit">
+                                                <div className="Login-submit-button-text">Log In</div>
+                                            </button>
+                                            {this.renderErrors()}
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div className="Login-area-2"></div>
+                        </div>
+                    </article>
+                </div>
             </div>
         );
     }

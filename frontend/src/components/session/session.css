@@ -1,0 +1,162 @@
+.Login-form-wrapper {
+    background-color: #fafafa;
+    flex-grow: 1;
+    order: 4;
+}
+
+.Login-form-holder {
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: center;
+    min-height: 100%;
+    overflow: hidden;
+    padding-bottom: 44px;
+    display: flex;
+}
+
+.Login-item-wrapper {
+    margin: 0 auto;
+    max-width: 935px;
+    width: 100%;
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: center;
+    display: flex;
+}
+
+.Login-item-holder{
+    color: #262626;
+    flex-grow: 1;
+    justify-content: center;
+    margin-top: 12px;
+    max-width: 350px;
+    width: 100%;
+}
+
+.Login-area-1 {
+    background-color: #fff;
+    border: 1px solid #e6e6e6;
+    border-radius: 1px;
+    margin: 0 0 10px;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.Login-form-items {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.Login-form-item-1 {
+    margin-bottom: 24px;
+    display: flex;
+    flex: 0 0 auto;
+    justify-content: flex-start;
+}
+
+.Login-input-holder {
+    margin: 0 40px 6px;
+}
+
+.Login-input-wrapper {
+    align-items: center;
+    border-radius: 3px;
+    box-sizing: border-box;
+    color: #262626;
+    display: flex;
+    flex-direction: row;
+    font-size: 14px;
+    position: relative;
+    width: 100%;
+    border: 1px solid #efefef;
+}
+
+.Login-active {
+    border: 1px solid #b2b2b2;
+}
+
+.Login-input-input {
+    height: 36px;
+    display: flex;
+    flex: 1 0 0;
+    padding: 0;
+    position: relative;
+    margin: 0;
+    min-width: 0;
+}
+
+.Login-text-input{
+    font-size: 16px;
+    appearance: none;
+    border: 0;
+    flex: 1 0 0px;
+    margin: 0;
+    outline: 0;
+    overflow: hidden;
+    padding: 9px 0 7px 8px;
+    text-overflow: ellipsis;
+    background-color: #fafafa
+}
+
+.Login-text-input-label {
+    color: #999;
+    font-size: 12px;
+    height: 36px;
+    left: 8px;
+    line-height: 36px;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    text-overflow: ellipsis;
+    transform-origin: left;
+    transition: transform ease-out .1s;
+    user-select: none;
+    white-space: nowrap;
+}
+
+.label-active {
+    transform: scale(.83333) translateY(-10px);
+}
+
+.Login-input-margin {
+    align-items: center;
+    flex: 0 0 auto;
+    flex-direction: row;
+    height: 100%;
+    padding-right: 8px;
+    vertical-align: middle;
+}
+
+.Login-submit-button-holder {
+    margin-top: 8px;
+    margin-right: 40px;
+    margin-left: 40px;
+    margin-bottom: 8px;
+    display: flex;
+}
+
+.Login-submit-button {
+    background-color: #3897f0;
+    border: 1px solid #3897f0;
+    border-radius: 4px;
+    color: #fff;
+    position: relative;
+    outline: 0;
+    appearance: none;
+    background: 0 0;
+    border: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    font-weight: 600;
+    padding: 5px 9px;
+    text-align: center;
+    text-transform: inherit;
+    text-overflow: ellipsis;
+    user-select: none;
+    white-space: nowrap;
+    width: auto;
+}

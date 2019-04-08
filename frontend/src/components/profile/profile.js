@@ -13,7 +13,6 @@ class Profile extends React.Component {
     }
 
     componentWillMount() {
-        console.log(this.props.currentUser.id)
         this.props.fetchUserPosts(this.props.currentUser.id)
     }
 
@@ -40,6 +39,7 @@ class Profile extends React.Component {
     
 
     render(){
+      console.log(this.props)
             return (
               <div className="Profile-wrapper">
                 <div className="Profile-holder">
@@ -53,7 +53,7 @@ class Profile extends React.Component {
                     </div>
                     <section className="Profile-holder-header-details">
                       <div className="Profile-holder-header-details-main">
-                        <h1>Username</h1>
+                        <h1>{this.props.currentUser.username}</h1>
                         <a className="Edit-profile">
                           <button className="Edit-profile-button">
                             Edit Profile

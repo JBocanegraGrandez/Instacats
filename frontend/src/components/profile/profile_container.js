@@ -3,7 +3,6 @@ import { fetchUserPosts } from '../../actions/post_actions';
 import Profile from './profile';
 
 const mapStateToProps = (state) => {
-    console.log(state)
     return {
         posts: Object.values(state.posts.user),
         currentUser: state.session.user
