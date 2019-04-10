@@ -1,5 +1,4 @@
 import { getPosts, getUserPosts, writePost } from '../util/post_api_util';
-import { write } from 'fs';
 
 export const RECEIVE_POSTS = "RECEIVE_POSTS";
 export const RECEIVE_USER_POSTS = "RECEIVE_USER_POSTS";

@@ -21,6 +21,7 @@ const App = () => (
          <ProtectedRoute exact path="/posts" component={PostsContainer} />
          <ProtectedRoute exact path="/profile" component={ProfileContainer} />
          <ProtectedRoute exact path="/new_post" component={PostComposeContainer} />
+         <ProtectedRoute exact path="/:username" component={ProfileContainer} />
      </Switch>
     </div>
 );

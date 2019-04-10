@@ -122,6 +122,12 @@ router.post("/login", (req, res) => {
         })
 })
 
-router.get('/login', (req, res) => res.send('working'))
+// Get single user 
+
+router.get('/:username', (req, res) => {
+    User.findOne({username: req.params.username})
+        .then(user => res.json(user))
+        .catch(err => res.status(404).json({ noUserFound: 'No User found with matching ID' }))
+})
 
 module.exports = router;

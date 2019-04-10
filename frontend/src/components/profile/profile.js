@@ -6,22 +6,30 @@ import './profile.css'
 class Profile extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            posts: []
-        }
     }
 
     componentWillMount() {
-        this.props.fetchUserPosts(this.props.currentUser.id)
+        this.props.fetchUser(this.props.match.params.username)
+          .then( ( )=> {
+            this.props.fetchUserPosts(this.props.user._id)
+          })
     }
 
     componentWillReceiveProps(newState) {
         this.setState({ posts: newState.posts });
     }
 
+    componentDidUpdate(prevProps, prevState) {
+      if (prevProps.match.params.username !== this.props.match.params.username) {
+        this.props.fetchUser(this.props.match.params.username)
+          .then(() => {
+            this.props.fetchUserPosts(this.props.user._id)
+          })
+      }
+    }
+
     isEmpty(){
-        if (this.state.post.length === 0) {
+        if (this.props.posts.length === 0) {
             return (
                 <div>No Posts</div>
             )
@@ -29,8 +37,8 @@ class Profile extends React.Component {
             return (
                 <div>
                     <h2>All of this User's Posts</h2>
-                    {this.state.posts.map(post => (
-                        <PostBox key={post._id} url={post.img} />
+                    {this.props.posts.map(post => (
+                        <PostBox key={post._id} url={post.img} date={post.date} />
                     ))}
                 </div>
             )
@@ -39,7 +47,6 @@ class Profile extends React.Component {
     
 
     render(){
-      console.log(this.props)
             return (
               <div className="Profile-wrapper">
                 <div className="Profile-holder">
@@ -101,7 +108,7 @@ class Profile extends React.Component {
                     </a>
                   </div>
                   <div className="Profile-holder-posts" />
-                  <div>This user has no Posts</div>
+                  <div>{this.isEmpty()}</div>
                 </div>
               </div>
             );
