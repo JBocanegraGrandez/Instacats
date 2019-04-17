@@ -101,6 +101,43 @@
     padding: 5px 9px;
     text-align: center;
     user-select: none;
+    outline: 0;
+}
+
+.settings {
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+    margin-left: 5px;
+}
+
+.settings-button {
+    min-height: 40px;
+    min-width: 40px;
+    align-items: center;
+    background: 0 0;
+    border: 0;
+    cursor: pointer;
+    display: flex;
+    flex-grow: 0;
+    justify-content: center;
+    padding: 0;
+    outline: 0;
+}
+
+.settings-span {
+    background-repeat: no-repeat;
+    height: 24px;
+    width: 24px;
+    background-size: 282px 248px;
+    background-position: -258px -150px;
+    background-image: url(https://www.instagram.com/static/bundles/es6/sprite_glyphs_2x_fba72cdd640a.png/fba72cdd640a.png)
+}
+
+.getbutton-holder{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
 }
 
 .Profile-pic {
@@ -181,4 +218,6 @@
     margin-left: 6px;
 
 }
+
+
 

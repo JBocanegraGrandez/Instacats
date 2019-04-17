@@ -30,12 +30,12 @@ class NavBar extends React.Component {
                   </Link>
                 </div>
                 <div>
-                  <Link className="link-icon" to={"/notifications"}>
+                  <Link className="link-icon" to={"/"}>
                     <img src={heart} height="24px" width="24px" alt="notifications" />
                   </Link>
                 </div>
                 <div>
-                  <Link className="link-icon"  to={"/profile"}>
+                  <Link className="link-icon"  to={`/${this.props.currentUser.username}`}>
                     <img src={kitty} height="24px" width="24px" alt="profile" />
                   </Link>
                 </div>
@@ -61,11 +61,15 @@ class NavBar extends React.Component {
             <div className="Nav-bar-holder">
               <div className="Nav-bar-item-1">
                 <div>
+                  <Link to={"/posts"} >
                   <img src={glyph} height="24px" width="24px"/>
+                  </Link>
                 </div>
                 <div className ="Nav-bar-divider"></div>
                 <div className="Nav-bar-logo">
+                  <Link to={"/posts"} >
                   <img src={logo} height="29px" width="103px" />
+                  </Link>
                 </div>
                 <div />
               </div>

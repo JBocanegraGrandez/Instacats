@@ -5,11 +5,8 @@
 
         render() {
             <article>
-                <div className="grid-container">
-                    <div className="grid-item"></div>
-                    <div className="grid-item"></div>
-                    <div className="grid-item"></div>
-                </div>
             </article>
         }
     }
+
+    export default PostDisplay

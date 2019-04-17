@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import './session.css'
 
 class LoginForm extends React.Component {
@@ -65,7 +65,7 @@ class LoginForm extends React.Component {
                     <article className="Login-item-wrapper">
                         <div className="Login-item-holder">
                             <div className="Login-area-1">
-                                <h1>Instaram</h1>
+                                <h1 className="Login-title">Instaram</h1>
                                 <div className="Login-form-items">
                                     <form onSubmit={this.handleSubmit}>
                                         <div className="Login-form-item-1"></div>
@@ -101,10 +101,28 @@ class LoginForm extends React.Component {
                                             </button>
                                             {this.renderErrors()}
                                         </div>
+                                        <div className="Login-separator-holder">
+                                            <div className="Login-separator-line"></div>
+                                            <div className="Login-separator-OR">or</div>
+                                            <div className="Login-separator-line"></div>
+                                        </div>
+                                        <div className="Login-submit-button-holder">
+                                            <button className="Login-demo-button" type="submit">
+                                                <div className="Login-submit-button-text">Demo Log In</div>
+                                            </button>
+                                        </div>
+                                        <Link className="Login-reset-password" to={"/reset"}>Forgot password?</Link>
                                     </form>
                                 </div>
                             </div>
-                            <div className="Login-area-2"></div>
+                            <div className="Login-area-2">
+                                <p className="Login-Link-to-Signup">
+                                    <div className="Login-Link-Holder">
+                                        Don't have an account? &nbsp;
+                                        <Link to={"/signup"}>Sign up</Link>
+                                    </div>
+                                </p>
+                            </div>
                         </div>
                     </article>
                 </div>

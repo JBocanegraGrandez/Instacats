@@ -2,6 +2,7 @@ import React from 'react';
 import PostBox from '../posts/post_box';
 import Pic from '../../profile.jpg'
 import './profile.css'
+import PostDisplayItem from '../posts/post_display_item';
 
 class Profile extends React.Component {
     constructor(props) {
@@ -35,18 +36,48 @@ class Profile extends React.Component {
             )
         } else {
             return (
-                <div>
-                    <h2>All of this User's Posts</h2>
+                <div className="Post-display-row">
                     {this.props.posts.map(post => (
-                        <PostBox key={post._id} url={post.img} date={post.date} />
+                        <PostDisplayItem key={post._id} url={post.img} date={post.date} />
                     ))}
                 </div>
             )
         }
     }
+
+    logout(){
+      this.props.logoutUser(this.props.user);
+    }
     
+    getButton(){
+      if (this.props.user.username === this.props.currentUser.username) {
+        return (
+          <span className="getbutton-holder">
+          <a className="Edit-profile">
+            <button className="Edit-profile-button">
+              Edit Profile
+            </button>
+          </a>
+          <a className="settings">
+            <button className="settings-button" onClick={this.logout.bind(this)}>
+              <span className="settings-span"></span>
+            </button>
+          </a>
+          </span>
+        )
+      } else {
+        return (
+        <a className="Edit-profile">
+          <button className="Edit-profile-button">
+            Follow
+          </button>
+        </a>
+        )
+      }
+    }
 
     render(){
+      console.log(this.props)
             return (
               <div className="Profile-wrapper">
                 <div className="Profile-holder">
@@ -60,35 +91,31 @@ class Profile extends React.Component {
                     </div>
                     <section className="Profile-holder-header-details">
                       <div className="Profile-holder-header-details-main">
-                        <h1>{this.props.currentUser.username}</h1>
-                        <a className="Edit-profile">
-                          <button className="Edit-profile-button">
-                            Edit Profile
-                          </button>
-                        </a>
+                        <h1>{this.props.user.username}</h1>
+                        {this.getButton()}
                         <div />
                       </div>
                       <ul className="Profile-holder-header-details-info">
                         <li className="Profile-stats-info">
                           <span>
-                            <span className="stats-numbers">Number</span> posts
+                            <span className="stats-numbers">{this.props.posts.length}</span> posts
                           </span>
                         </li>
                         <li className="Profile-stats-info">
                           <span>
-                            <span className="stats-numbers">Number</span> followers
+                            <span className="stats-numbers">{this.props.user.followers}</span> followers
                           </span>
                         </li>
                         <li className="Profile-stats-info">
                           <span>
-                            <span className="stats-numbers">Number</span> following
+                            <span className="stats-numbers">{this.props.user.following}</span> following
                           </span>
                         </li>
                       </ul>
                       <div className="Profile-holder-header-details-details">
-                        <h1 className="Full-name">Name, Lastname</h1>
+                        <h1 className="Full-name">{this.props.user.name} {this.props.user.lastname}</h1>
                         <br/>
-                        <span>Description</span>
+                        <span>{this.props.user.description}</span>
                       </div>
                     </section>
                   </header>

@@ -50,3 +50,8 @@ html {
 *, *:before, *:after {
   box-sizing: inherit;
 }
+
+a {
+  color: #003569;
+  text-decoration: none;
+}

@@ -281,3 +281,31 @@
     flex-shrink: 1;
     position: relative;
 }
+
+.Post-display-item-wrapper {
+    margin-right: 28px;
+    flex: 1 0 0%;
+}
+
+
+.Post-display-item-wrapper:last-child {
+    margin-right: 0px;
+}
+
+.Post-display-item {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 100%;
+}
+
+.Post-display-item-pic {
+    object-fit: cover;
+    height: 293px;
+    width: 293px;
+}
+
+.Post-display-row{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 28px;
+}

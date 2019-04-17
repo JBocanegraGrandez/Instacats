@@ -18,6 +18,26 @@ const UserSchema = new Schema({
         required: true
     },
 
+    name:{
+        type: String,
+        required: false
+    },
+
+    lastname:{
+        type: String,
+        required: false
+    },
+
+    description: {
+        type: String,
+        required: false
+    },
+
+    
+    followers: [{ type: Schema.Types.ObjectId, ref: 'users'}],
+
+    following: [ {type: Schema.Types.ObjectId, ref: 'users'}],
+
     date: {
         type: Date,
         default: Date.now
