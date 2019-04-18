@@ -2,6 +2,7 @@ import React from 'react';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import { Switch } from 'react-router-dom';
 import NavBarContainer from './nav/navbar_container';
+import Footer from './footer/footer'
 
 import MainPage from './main/main_page';
 import LoginFormContainer from './session/login_form_container';
@@ -23,6 +24,7 @@ const App = () => (
          <ProtectedRoute exact path="/new_post" component={PostComposeContainer} />
          <ProtectedRoute exact path="/:username" component={ProfileContainer} />
      </Switch>
+        <Footer />
     </div>
 );
 

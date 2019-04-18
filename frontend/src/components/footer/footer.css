@@ -1,0 +1,39 @@
+.Footer-wrapper {
+    order: 5;
+    padding: 0 20px;
+    background-color: #fafafa;
+    display: flex;
+    flex-direction: column;
+}
+
+.Footer-holder {
+    display: flex;
+    max-width: 935px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 38px 0;
+    font-size: 12px;
+    font-weight: 600;
+    margin: 0 auto;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.Footer-nav {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.Footer-ul {
+    margin-right: 16px;
+    flex-grow: 1;
+    margin-bottom: 3px;
+}
+
+.Footer-ul-li {
+    display: inline-block;
+    margin-bottom: 7px;
+    margin-right: 16px;
+}
