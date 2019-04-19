@@ -72,7 +72,7 @@ class LoginForm extends React.Component {
                                         <div className="Login-input-holder">
                                             <div className="Login-input-wrapper">
                                                 <div className="Login-input-input">
-                                                    <label className="Login-text-input-label" for="email">Email</label>
+                                                    <label className="Login-text-input-label" htmlFor="email">Email</label>
                                                     <input id="email" className="Login-text-input" type="text"
                                                         value={this.state.email}
                                                         onChange={this.update('email')}
@@ -85,7 +85,7 @@ class LoginForm extends React.Component {
                                         <div className="Login-input-holder">
                                             <div className="Login-input-wrapper">
                                                 <div className="Login-input-input">
-                                                    <label className="Login-text-input-label" for="password">Password</label>
+                                                    <label className="Login-text-input-label" htmlFor="password">Password</label>
                                                     <input id="password" className="Login-text-input" type="password"
                                                         value={this.state.password}
                                                         onChange={this.update('password')}
@@ -99,7 +99,6 @@ class LoginForm extends React.Component {
                                             <button  className="Login-submit-button" type="submit">
                                                 <div className="Login-submit-button-text">Log In</div>
                                             </button>
-                                            {this.renderErrors()}
                                         </div>
                                         <div className="Login-separator-holder">
                                             <div className="Login-separator-line"></div>
@@ -112,16 +111,17 @@ class LoginForm extends React.Component {
                                             </button>
                                         </div>
                                         <Link className="Login-reset-password" to={"/reset"}>Forgot password?</Link>
+                                        <div className="Login-errors">{this.renderErrors()}</div>
                                     </form>
                                 </div>
                             </div>
                             <div className="Login-area-2">
-                                <p className="Login-Link-to-Signup">
+                                <div className="Login-Link-to-Signup">
                                     <div className="Login-Link-Holder">
                                         Don't have an account? &nbsp;
                                         <Link to={"/signup"}>Sign up</Link>
                                     </div>
-                                </p>
+                                </div>
                             </div>
                         </div>
                     </article>

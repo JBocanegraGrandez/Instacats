@@ -10,7 +10,7 @@ class Footer extends React.Component {
 
     render() {
         return (
-           <div className="Footer-wrapper">
+           <footer className="Footer-wrapper">
             <div className="Footer-holder">
                 <nav className="Footer-nav">
                 <ul className="Footer-ul">
@@ -23,7 +23,7 @@ class Footer extends React.Component {
                 </nav>
                 <span>2019 Jorge Bocanegra</span>
             </div>
-           </div>
+           </footer>
         );
     };
 }

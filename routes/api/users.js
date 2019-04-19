@@ -25,6 +25,25 @@ router.get("/current", passport.authenticate('jwt', {session: false}), (req, res
     });
 })
 
+//User update route needs some work
+
+router.patch("/update", (req, res) => {
+
+    User.findOne({email: req.body.email})
+        .then(user => {
+            if (user) {
+              const updateUser =  new User ({
+                  username: req.body.username,
+                  password: req.body.password,
+                  name: req.body.name,
+                  lastname: req.body.lastname,
+                  description: req.body.description,
+              });
+              return {user: {...user, ...updateUser}}
+            }
+            
+        })
+})
 
 // User register route
 router.post("/register", (req, res) => {
@@ -101,7 +120,10 @@ router.post("/login", (req, res) => {
                         const payload = {
                             id: user.id,
                             username: user.username,
-                            email: user.email
+                            email: user.email,
+                            name: user.name,
+                            lastname: user.lastname,
+                            description: user.description
                         }
                         jwt.sign(
                             payload,

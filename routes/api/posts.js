@@ -9,6 +9,7 @@ const mongoose = require('mongoose');
 // Get all Posts
 router.get("/", (req, res) => {
     Post.find()
+        .populate('user')
         .sort({date: -1})
         .then(posts => res.json(posts))
         .catch(err => res.status(400).json({noPostsFound: 'No Posts found' }))

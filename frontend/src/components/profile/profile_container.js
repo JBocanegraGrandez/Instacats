@@ -1,17 +1,23 @@
 import { connect } from 'react-redux';
 import { fetchUserPosts} from '../../actions/post_actions';
 import { fetchUser} from '../../actions/user_actions';
-import { logoutUser } from '../../actions/session_actions';
+import { logout } from '../../actions/session_actions';
 import Profile from './profile';
 
 const mapStateToProps = (state, ownProps) => {
-    // if (ownProps.match.params.username) {
-
-    // }
+    const defaultUser = {
+        description: "loading...",
+        email: "loading...",
+        followers: [],
+        following: [],
+        lastname: "loading...",
+        name: "loading...",
+        username: "loading...",
+    }
     return {
       posts: Object.values(state.posts.user),
       currentUser: state.session.user,
-      user: state.user
+      user: {...defaultUser, ...state.user}
     };
 };
 
@@ -19,7 +25,7 @@ const mapDispatchToProps = dispatch => {
     return{
         fetchUserPosts: id => dispatch(fetchUserPosts(id)),
         fetchUser: username => dispatch(fetchUser(username)),
-        logoutUser: user => dispatch(logoutUser(user))
+        logout: () => dispatch(logout())
     };
 };
 

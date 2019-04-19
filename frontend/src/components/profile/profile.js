@@ -3,6 +3,7 @@ import PostBox from '../posts/post_box';
 import Pic from '../../profile.jpg'
 import './profile.css'
 import PostDisplayItem from '../posts/post_display_item';
+import { Link } from 'react-router-dom'
 
 class Profile extends React.Component {
     constructor(props) {
@@ -46,18 +47,18 @@ class Profile extends React.Component {
     }
 
     logout(){
-      this.props.logoutUser(this.props.user);
+      this.props.logout();
     }
     
     getButton(){
       if (this.props.user.username === this.props.currentUser.username) {
         return (
           <span className="getbutton-holder">
-          <a className="Edit-profile">
+          <Link to={"/accounts/edit"} className="Edit-profile">
             <button className="Edit-profile-button">
               Edit Profile
             </button>
-          </a>
+          </Link>
           <a className="settings">
             <button className="settings-button" onClick={this.logout.bind(this)}>
               <span className="settings-span"></span>
@@ -77,7 +78,6 @@ class Profile extends React.Component {
     }
 
     render(){
-      console.log(this.props)
             return (
               <div className="Profile-wrapper">
                 <div className="Profile-holder">
@@ -103,12 +103,12 @@ class Profile extends React.Component {
                         </li>
                         <li className="Profile-stats-info">
                           <span>
-                            <span className="stats-numbers">{this.props.user.followers}</span> followers
+                            <span className="stats-numbers">{this.props.user.followers.length}</span> followers
                           </span>
                         </li>
                         <li className="Profile-stats-info">
                           <span>
-                            <span className="stats-numbers">{this.props.user.following}</span> following
+                            <span className="stats-numbers">{this.props.user.following.length}</span> following
                           </span>
                         </li>
                       </ul>
