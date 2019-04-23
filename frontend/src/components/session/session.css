@@ -264,6 +264,12 @@
     margin: -3px 0 -4px;
 }
 
+.Login-Link-Holder a {
+    color: #003569;
+    font-weight: 600;
+}
+
+
 .Login-errors {
     color: #ed4956;
     margin: 20px 40px 10px 40px;

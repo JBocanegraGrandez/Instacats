@@ -27,13 +27,7 @@ class LoginForm extends React.Component {
     }
 
     submitBehavior(el) {
-        let button = document.getElementById('sub');
-
-        if (el.firstChild.nextSibling.value !== '') {
-            button.disabled = false;
-        } else {
-            button.disabled = true;
-        }
+     
         
     }
 
@@ -41,26 +35,28 @@ class LoginForm extends React.Component {
     update(field) {
         return e => {
             this.setState({[field]: e.currentTarget.value });
-            this.classSelector();
+            
         }
     }
 
-    //Select the proper inputs to change classes
-    classSelector() {
-        let elements = document.getElementsByClassName("Login-input-input");
-        let email = elements[0];
-        let password = elements[1];
-        this.classUpdate(email)
-        this.submitBehavior(email)
-        this.classUpdate(password)
-    }
     
-    // Animations of inputs based on value, therefore by extention based of state
-    classUpdate(el) {
-        el.classList.add('with-info')
-       
-        if (el.firstChild.nextSibling.value === '') {
-            el.classList.remove('with-info')
+    // Animations of inputs on local state by changing class on the parent container
+
+    displayField (field) {
+        if (this.state[field] !== '') {
+            return "Login-input-input with-info";
+        } else {
+            return "Login-input-input";
+        }
+    }
+
+    // Enable/disable submit button 
+
+    isDisabled() {
+        if (this.state.email === '') {
+            return true
+        } else {
+            return false
         }
     }
 
@@ -103,7 +99,7 @@ class LoginForm extends React.Component {
                                         <div className="Login-form-item-1"></div>
                                         <div className="Login-input-holder">
                                             <div className="Login-input-wrapper">
-                                                <div className="Login-input-input">
+                                                <div className={this.displayField('email')}>
                                                     <label className="Login-text-input-label" htmlFor="email">Email</label>
                                                     <input id="email" className="Login-text-input" type="text"
                                                         value={this.state.email}
@@ -116,7 +112,7 @@ class LoginForm extends React.Component {
                                         </div>
                                         <div className="Login-input-holder">
                                             <div className="Login-input-wrapper">
-                                                <div className="Login-input-input">
+                                                <div className={this.displayField('password')}>
                                                     <label className="Login-text-input-label" htmlFor="password">Password</label>
                                                     <input id="password" className="Login-text-input" type="password"
                                                         value={this.state.password}
@@ -128,7 +124,7 @@ class LoginForm extends React.Component {
                                             </div>
                                         </div>
                                         <div className="Login-submit-button-holder">
-                                            <button  id='sub' className="Login-submit-button" type="submit" disabled>
+                                            <button  id='sub' className="Login-submit-button" type="submit" disabled={this.isDisabled()}>
                                                 <div className="Login-submit-button-text">Log In</div>
                                             </button>
                                         </div>
