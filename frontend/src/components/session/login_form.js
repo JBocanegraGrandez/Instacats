@@ -43,13 +43,12 @@ class LoginForm extends React.Component {
     }
 
     classUpdate(el) {
-        let string = el.firstChild.nextSibling.id
-        if (this.state.email != '') {
-            el.className += " with-info"
-        } else {
-            el.className += " with-info";
+        el.classList.add('with-info')
+        if (el.firstChild.nextSibling.value === '') {
+            el.classList.remove('with-info')
         }
     }
+
 
     // Handle form submission
     handleSubmit(e) {
