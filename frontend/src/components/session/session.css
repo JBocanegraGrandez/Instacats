@@ -160,6 +160,11 @@
     width: auto;
 }
 
+.Login-submit-button:disabled {
+    opacity: .3;
+    pointer-events: none;
+}
+
 .Login-demo-button {
     border: 0;
     color: #3897f0;

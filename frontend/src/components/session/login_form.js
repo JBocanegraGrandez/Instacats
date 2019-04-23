@@ -26,24 +26,39 @@ class LoginForm extends React.Component {
         this.setState({ errors: nextProps.errors })
     }
 
-    // Handle field updates (called in the render method)
-    update(field) {
-        return e => {this.setState({
-            [field]: e.currentTarget.value
-        });
-        this.classSelector()}
+    submitBehavior(el) {
+        let button = document.getElementById('sub');
+
+        if (el.firstChild.nextSibling.value !== '') {
+            button.disabled = false;
+        } else {
+            button.disabled = true;
+        }
+        
     }
 
+    // Handle field updates (called in the render method)
+    update(field) {
+        return e => {
+            this.setState({[field]: e.currentTarget.value });
+            this.classSelector();
+        }
+    }
+
+    //Select the proper inputs to change classes
     classSelector() {
         let elements = document.getElementsByClassName("Login-input-input");
         let email = elements[0];
         let password = elements[1];
         this.classUpdate(email)
+        this.submitBehavior(email)
         this.classUpdate(password)
     }
-
+    
+    // Animations of inputs based on value, therefore by extention based of state
     classUpdate(el) {
         el.classList.add('with-info')
+       
         if (el.firstChild.nextSibling.value === '') {
             el.classList.remove('with-info')
         }
@@ -113,7 +128,7 @@ class LoginForm extends React.Component {
                                             </div>
                                         </div>
                                         <div className="Login-submit-button-holder">
-                                            <button  className="Login-submit-button" type="submit">
+                                            <button  id='sub' className="Login-submit-button" type="submit" disabled>
                                                 <div className="Login-submit-button-text">Log In</div>
                                             </button>
                                         </div>
