@@ -266,3 +266,12 @@
     line-height: 18px;
     text-align: center;
 }
+
+.with-info .Login-text-input-label{
+    transform: scale(.83333) translateY(-10px);
+}
+
+.with-info .Login-text-input {
+    font-size: 12px;
+    padding: 14px 0 2px 8px;
+}

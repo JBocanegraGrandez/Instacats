@@ -28,9 +28,27 @@ class LoginForm extends React.Component {
 
     // Handle field updates (called in the render method)
     update(field) {
-        return e => this.setState({
+        return e => {this.setState({
             [field]: e.currentTarget.value
         });
+        this.classSelector()}
+    }
+
+    classSelector() {
+        let elements = document.getElementsByClassName("Login-input-input");
+        let email = elements[0];
+        let password = elements[1];
+        this.classUpdate(email)
+        this.classUpdate(password)
+    }
+
+    classUpdate(el) {
+        let string = el.firstChild.nextSibling.id
+        if (this.state.email != '') {
+            el.className += " with-info"
+        } else {
+            el.className += " with-info";
+        }
     }
 
     // Handle form submission
@@ -76,7 +94,7 @@ class LoginForm extends React.Component {
                                                     <input id="email" className="Login-text-input" type="text"
                                                         value={this.state.email}
                                                         onChange={this.update('email')}
-                                                        placeholder="Email"
+                                                        
                                                     />
                                                 </div>
                                                 <div className="Login-input-margin"></div>
@@ -89,7 +107,7 @@ class LoginForm extends React.Component {
                                                     <input id="password" className="Login-text-input" type="password"
                                                         value={this.state.password}
                                                         onChange={this.update('password')}
-                                                        placeholder="Password"
+                                                        
                                                     />
                                                 </div>
                                                 <div className="Login-input-margin"></div>
