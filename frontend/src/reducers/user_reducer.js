@@ -5,7 +5,8 @@ const UserReducer = (state = {}, action) => {
     let newState = Object.assign({}, state);
     switch (action.type) {
         case RECEIVE_USER:
-            newState = action.user.data;
+        newState = action.user.data;
+        delete newState.password;
             return newState;
         default:
             return state;

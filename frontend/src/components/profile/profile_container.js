@@ -6,7 +6,7 @@ import Profile from './profile';
 
 const mapStateToProps = (state, ownProps) => {
     const defaultUser = {
-        description: "loading...",
+        description: "",
         email: "loading...",
         followers: [],
         following: [],

@@ -286,3 +286,13 @@
     font-size: 12px;
     padding: 14px 0 2px 8px;
 }
+
+
+.Login-h2 {
+    font-weight: 600;
+    line-height: 20px;
+    font-size: 17px;
+    margin: 0 40px 10px;
+    color: #999;
+    text-align: center;
+}

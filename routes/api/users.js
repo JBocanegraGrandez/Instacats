@@ -32,14 +32,14 @@ router.patch("/update", (req, res) => {
     User.findOne({email: req.body.email})
         .then(user => {
             if (user) {
-              const updateUser =  new User ({
-                  username: req.body.username,
-                  password: req.body.password,
-                  name: req.body.name,
-                  lastname: req.body.lastname,
-                  description: req.body.description,
-              });
-              return {user: {...user, ...updateUser}}
+                  user.username = req.body.username;
+                  user.name =  req.body.name;
+                  user.lastname = req.body.lastname;
+                  user.description = req.body.description;
+                  user.save()
+            }
+            else {
+                return res.status(400).json({ noUserFound: "No user found" })
             }
             
         })
@@ -62,6 +62,8 @@ router.post("/register", (req, res) => {
                     username: req.body.username,
                     email: req.body.email,
                     password: req.body.password,
+                    name: req.body.name,
+                    lastname: req.body.lastname,
                 })
 
                 bcrypt.genSalt(10, (err, salt) => {
