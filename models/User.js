@@ -27,6 +27,11 @@ const UserSchema = new Schema({
         type: String,
         required: false
     },
+    
+    profileURL: {
+        type: String,
+        required: false
+    },
 
     description: {
         type: String,

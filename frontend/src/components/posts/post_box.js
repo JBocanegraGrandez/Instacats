@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import "./post.css"
 
 class PostBox extends React.Component {
@@ -26,24 +27,24 @@ class PostBox extends React.Component {
           <article className="Postbox-article">
             <header className="Postbox-header">
               <div className="Postbox-header-profile-pic-holder">
-                <a className="Postbox-header-profile-pic-item">
+                <Link to={`/${this.props.author}`}className="Postbox-header-profile-pic-item">
                   <img
                     className="Postbox-header-picture"
-                    src="http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"
+                                src={this.props.authorPic || "http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"}
+                    alt=""
                   />
-                </a>
+                </Link>
               </div>
               <div className="Postbox-header-author-details">
                   <div className="Postbox-header-username">
-                    <a>{this.props.author}</a>
+                    <Link to={`/${this.props.author}`}>{this.props.author}</Link>
                   </div>
                   <div className="Postbox-header-location">
-                    <h2><a>location</a></h2>
                   </div>
               </div>
             </header>
             <div>
-                <img className="Postbox-picture" src={this.props.url} />
+                <img className="Postbox-picture" src={this.props.url} alt="" />
             </div>
             <div>
                 <section className="Postbox-interactive">
@@ -52,12 +53,12 @@ class PostBox extends React.Component {
                     <span className="Postbox-button-holder-between"><button className="Postbox-interactive-button"><span className="Span-share"></span></button></span>
                     <span className="Postbox-button-holder-last"><button className="Postbox-interactive-button"><span className="Span-save"></span></button></span>
                 </section>
-                <section className="Postbox-stats-wrapper"><div className="Postbox-stats-div"><a className="Link-bold"><span>5</span> likes</a></div></section>
+                <section className="Postbox-stats-wrapper"><div className="Postbox-stats-div"><span className="Link-bold"><span>5</span> likes</span></div></section>
                 <div className="Postbox-comments">
                     <ul>
                         <li className="Li-comment">
                             <div className="Div-comment">
-                                <h2 className="username"><a className="username-link">{this.props.author}</a></h2><span>{this.props.caption}</span>
+                                    <h2 className="username"><Link to={`/${this.props.author}`} className="username-link">{this.props.author}</Link></h2><span>{this.props.caption}</span>
                             </div>
                         </li>
                     </ul>

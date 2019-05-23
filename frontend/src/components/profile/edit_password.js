@@ -1,5 +1,4 @@
 import React from 'react';
-import Pic from "../../profile.jpg";
 import { Link } from 'react-router-dom'
 import "./profile.css"
 
@@ -41,7 +40,7 @@ class EditPassword extends React.Component {
                             <div className="Profile-edit-header-pic-wrapper">
                                 <div className="Profile-edit-header-pic-holder">
                                     <button className="Profile-edit-change-pic">
-                                        <img className="Profile-edit-img" src="https://scontent-sjc3-1.cdninstagram.com/vp/8979d347db3984c185c7b9fcac6d1414/5D48C6E9/t51.2885-19/11138064_655901884543180_1057880351_a.jpg?_nc_ht=scontent-sjc3-1.cdninstagram.com"></img>/>
+                                        <img className="Profile-edit-img" src="https://scontent-sjc3-1.cdninstagram.com/vp/8979d347db3984c185c7b9fcac6d1414/5D48C6E9/t51.2885-19/11138064_655901884543180_1057880351_a.jpg?_nc_ht=scontent-sjc3-1.cdninstagram.com" alt=""></img>/>
                                     </button>
                                 </div>
                             </div>

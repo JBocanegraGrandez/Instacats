@@ -1,7 +1,7 @@
 import React from 'react';
-import Pic from "../../profile.jpg";
 import { Link } from 'react-router-dom'
 import "./profile.css"
+import UploadProfilePic from "../upload/file_upload"
 
 class EditProfile extends React.Component {
   constructor(props) {
@@ -12,11 +12,16 @@ class EditProfile extends React.Component {
       name: `${this.props.currentUser.name}`,
       lastname: `${this.props.currentUser.lastname}`,
       username: `${this.props.currentUser.username}`,
-      description: `${this.props.currentUser.description}`
+      description: `${this.props.currentUser.description}`,
+      modal: false
     };
+
+    this.modifyModal = this.modifyModal.bind(this)
   }
 
-  componentWillMount() {}
+  componentWillMount() {
+    
+  }
 
   // Handle field updates (called in the render method)
   update(field) {
@@ -25,6 +30,29 @@ class EditProfile extends React.Component {
         [field]: e.currentTarget.value
       });
   }
+
+
+  showModal(){
+    this.setState({modal: true})
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    let user = {
+      email: this.state.email,
+      name: this.state.name,
+      lastname: this.state.lastname,
+      username: this.state.username,
+      description: this.state.description
+    };
+
+    this.props.patchUser(user, this.props.history);
+  }
+
+  modifyModal(boolean) {
+    this.setState({modal: boolean})
+  }
+
 
   render() {
     return (
@@ -55,20 +83,32 @@ class EditProfile extends React.Component {
                   <button className="Profile-edit-change-pic">
                     <img
                       className="Profile-edit-img"
-                      src="https://scontent-sjc3-1.cdninstagram.com/vp/8979d347db3984c185c7b9fcac6d1414/5D48C6E9/t51.2885-19/11138064_655901884543180_1057880351_a.jpg?_nc_ht=scontent-sjc3-1.cdninstagram.com"
+                      src={
+                        this.props.currentUser.profileURL ||
+                        "http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"
+                      }
+                      alt="edit-pic"
                     />
                     />
                   </button>
                 </div>
               </div>
               <div className="Profile-edit-header-details">
-                <h1 className="Profile-edit-title">{this.state.username} </h1>
-                <button className="Profile-change-pic">
+                <h1 className="Profile-edit-title">
+                  {this.state.username}{" "}
+                </h1>
+                <button
+                  className="Profile-change-pic"
+                  onClick={this.showModal.bind(this)}
+                >
                   Change Profile Photo
                 </button>
               </div>
             </div>
-            <form className="Edit-Profile-Form">
+            <form
+              className="Edit-Profile-Form"
+              onSubmit={this.handleSubmit.bind(this)}
+            >
               <div className="Edit-Profile-Input-holder">
                 <aside className="Edit-Profile-aside">
                   <label htmlFor="input-name">First Name</label>
@@ -78,8 +118,8 @@ class EditProfile extends React.Component {
                     id="input-name"
                     className="Edit-Profile-input"
                     type="text"
-                    value={this.state.name} 
-                    onChange={this.update('name')}
+                    value={this.state.name}
+                    onChange={this.update("name")}
                   />
                 </div>
               </div>
@@ -93,7 +133,7 @@ class EditProfile extends React.Component {
                     className="Edit-Profile-input"
                     type="text"
                     value={this.state.lastname}
-                    onChange={this.update('lastname')}
+                    onChange={this.update("lastname")}
                   />
                 </div>
               </div>
@@ -107,7 +147,7 @@ class EditProfile extends React.Component {
                     className="Edit-Profile-input"
                     type="text"
                     value={this.state.username}
-                    onChange={this.update('username')}
+                    onChange={this.update("username")}
                   />
                 </div>
               </div>
@@ -135,7 +175,7 @@ class EditProfile extends React.Component {
                     className="Edit-Profile-textarea"
                     type="text"
                     value={this.state.description}
-                    onChange={this.update('description')}
+                    onChange={this.update("description")}
                   />
                 </div>
               </div>
@@ -152,6 +192,10 @@ class EditProfile extends React.Component {
             </form>
           </article>
         </div>
+        <UploadProfilePic
+          show={this.state.modal}
+          modifyModal={this.modifyModal}
+        />
       </div>
     );
   }

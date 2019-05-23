@@ -13,6 +13,8 @@ import PostComposeContainer from "../components/posts/post_compose_container";
 import EditProfile from '../components/profile/edit_profile_container'
 import EditPassword from '../components/profile/edit_password'
 
+import FileUpload from '../components/upload/file_upload'
+
 const App = () => (
     <div>
         <NavBarContainer/>
@@ -21,12 +23,14 @@ const App = () => (
          <AuthRoute exact path="/login" component={LoginFormContainer} />
          <AuthRoute exact path="/signup" component={SignupFormContainer} />
 
+         <ProtectedRoute exact path="/accounts/upload" component={FileUpload} />
+
          <ProtectedRoute exact path="/accounts/edit" component={EditProfile} />
          <ProtectedRoute exact path="/accounts/password" component={EditPassword} />
          <ProtectedRoute exact path="/posts" component={PostsContainer} />
          <ProtectedRoute exact path="/profile" component={ProfileContainer} />
          <ProtectedRoute exact path="/new_post" component={PostComposeContainer} />
-         <ProtectedRoute exact path="/:username" component={ProfileContainer} />
+         <ProtectedRoute path="/:username" component={ProfileContainer} />
      </Switch>
         <Footer />
     </div>

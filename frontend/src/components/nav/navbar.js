@@ -62,13 +62,13 @@ class NavBar extends React.Component {
               <div className="Nav-bar-item-1">
                 <div>
                   <Link to={"/posts"} >
-                  <img src={glyph} height="24px" width="24px"/>
+                  <img src={glyph} height="24px" width="24px" alt="posts"/>
                   </Link>
                 </div>
                 <div className ="Nav-bar-divider"></div>
                 <div className="Nav-bar-logo">
                   <Link to={"/posts"} >
-                  <img src={logo} height="29px" width="103px" />
+                  <img src={logo} height="29px" width="103px" alt="posts"/>
                   </Link>
                 </div>
                 <div />

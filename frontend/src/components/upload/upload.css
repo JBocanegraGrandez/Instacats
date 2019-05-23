@@ -1,0 +1,87 @@
+.Upload-Profile-pic-wrapper {
+    /* width: 400px; */
+    background-color: #fff;
+    border-radius: 12px;
+    flex-shrink: 1;
+    margin: 20px;
+    max-height: calc(100% - 40px);
+    display: flex;
+}
+
+.Upload-Profile-pic-holder {
+   justify-content: center;
+   display: flex;
+   flex-direction: column;
+   
+}
+
+.Upload-Profile-pic-title-holder {
+    display: flex;
+    flex-direction: column;
+    margin: 16px 32px;
+    text-align: center;
+}
+
+.Upload-Profile-pic-title-holder:first-child {
+    margin-top: 32px;
+}
+
+.Upload-Profile-pic-title {
+    display: block;
+    color: #262626;
+    font-weight: 600;
+    font-size: 18px;
+    margin: -4px 0 -6px;
+    line-height: 24px;
+}
+
+.Upload-Profile-pic-buttons {
+    display: flex;
+    margin-top: 16px;
+    flex-direction: column;
+}
+
+.Upload-Profile-button {
+    font-size: 14px;
+    color: #3897f0;
+    font-weight: 700;
+    background-color: transparent;
+    border-bottom: 0;
+    border-left: 0;
+    border-right: 0;
+    border-top: 1px solid #efefef;
+    cursor: pointer;
+    line-height: 1.5;
+    margin: 0;
+    min-height: 48px;
+    padding: 4px 8px;
+    text-align: center;
+    user-select: none;
+    vertical-align: middle;
+
+}
+
+.Upload-Profile-pic-buttons:last-child {
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.Upload-Profile-pic-z {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgba(0,0,0,.5);
+    bottom: 0;
+    flex-direction: column;
+    left: 0;
+    overflow-y: auto;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1;
+}
+
+.Upload-Profile-cancel {
+    color: black;
+    font-weight: 400;
+}

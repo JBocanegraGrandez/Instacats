@@ -112,10 +112,65 @@
     border-radius: 4px;
     display: block;
     font-weight: 600;
-    padding: 5px 9px;
+    padding: 0 24px;
     text-align: center;
     user-select: none;
     outline: 0;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 26px;
+    overflow: hidden;
+}
+.Edit-profile-button-follow{
+    background-color: #3897f0;
+    border: 1px solid #dbdbdb;
+    color: #fff;
+    border-radius: 4px;
+    display: block;
+    font-weight: 600;
+    padding: 0 24px;
+    text-align: center;
+    user-select: none;
+    outline: 0;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 26px;
+    overflow: hidden;
+}
+
+.Edit-profile-button:disabled{
+    background-color: white;
+    border: 1px solid #dbdbdb;
+    color: #262626;
+    border-radius: 4px;
+    display: block;
+    font-weight: 600;
+    padding: 0px 24px;
+    text-align: center;
+    user-select: none;
+    outline: 0;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 26px;
+    overflow: hidden;
+    opacity: .7;
+}
+.Edit-profile-button-follow:disabled{
+    background-color: #3897f0;
+    border: 1px solid #dbdbdb;
+    color: #fff;
+    border-radius: 4px;
+    display: block;
+    font-weight: 600;
+    padding: 0px 24px;
+    text-align: center;
+    user-select: none;
+    outline: 0;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 26px;
+    overflow: hidden;
+    opacity: .7;
 }
 
 .settings {
@@ -455,4 +510,206 @@
     margin-top: 16px;
     display: flex;
     flex-direction: row;
+}
+
+.FollowList-z {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, .5);
+    flex-direction: column;
+    position: fixed;
+    z-index: 1;
+
+}
+.FollowList-holder {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    background-color: #fff;
+    border-radius: 12px;
+    flex-shrink: 1;
+    margin: 20px;
+    max-height: calc(100% - 40px);
+    animation: ease-out;
+    flex: 1 1;
+}
+
+.FollowList-title-holder {
+    display: flex;
+    border-bottom: 1px solid #efefef;
+    flex-direction: row;
+    height: 43px;
+}
+
+.FollowList-title-corner {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 48px;
+    align-items: center;
+    justify-content: center;
+}
+
+.FollowList-title-main {
+    display: flex;
+    flex-grow: 1;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.FollowList-title-exit {
+    min-height: 40px;
+    min-width: 40px;
+    align-items: center;
+    background: 0 0;
+    border: 0;
+    cursor: pointer;
+    display: flex;
+    flex-grow: 0;
+    justify-content: center;
+    padding: 0;
+    outline: 0;
+}
+
+.FollowList-title-x {
+    display: block;
+    background-repeat: no-repeat;
+    background-position: -52px -263px;
+    height: 24px;
+    width: 24px;
+    background-image: url('https://www.instagram.com/static/bundles/es6/sprite_glyphs_4d61c80848f3.png/4d61c80848f3.png')
+}
+
+.FollowList-ul-wrapper {
+    border-radius: 12px;
+    display: block;
+    flex: 1 1;
+    min-height: 200px;
+    overflow-y: scroll;
+}
+
+.FollowList-ul-holder {
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    animation: ease-in-out
+}
+
+.FollowList-ul-li {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 16px;
+}
+
+.FollowList-ul-li-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between
+}
+
+.FollowList-ul-li-div-details-holder {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex: 1 1 100px;
+    overflow: hidden;
+}
+
+.FollowList-ul-li-div-details-pic {
+    align-self: center;
+    display: block;
+    flex: none;
+    margin: 4px 13px 4px 4px
+}
+
+.FollowList-canvas {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: 40px;
+    height: 40px;
+}
+
+.FollowList-canvas-Link {
+    background-color: #fafafa;
+    border-radius: 50%;
+    box-sizing: border-box;
+    display: block;
+    flex: 0 0 auto;
+    overflow: hidden;
+    position: relative;
+    width: 30px;
+    height: 30px;
+}
+
+.FollowList-canvas-image {
+    height: 100%;
+    width: 100%;
+}
+
+.FollowList-ul-li-div-details-user {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 70px
+}
+
+.FollowList-detail-username, .FollowList-detail-username:visited {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    color: #262626;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-left: 5px;
+    margin-left: -5px;
+}
+
+.FollowList-detail-names {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18pxl;
+    color: #999;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.FollowList-ul-li-button-holder {
+    display: flex;
+    flex: 0 0 auto;
+    justify-content: center;
+    margin-left: 15px;
+}
+
+.FollowList-ul-li-button {
+    background-color: transparent;
+    border: 1px solid #dbdbdb;
+    color: #262626;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+    display: block;
+    font-weight: 600;
+    padding: 5px 9px;
+    text-align: center;
+    text-transform: inherit;
+    text-overflow: ellipsis;
+    user-select: none;
+    white-space: nowrap;
+    width: auto;
+    outline: 0;
 }

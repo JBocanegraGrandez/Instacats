@@ -31,7 +31,6 @@ const Protected = ({ component: Component, loggedIn, ...rest }) => (
 //     {loggedIn: state.session.isAuthenticated}
 // );
 const mapStateToProps = state => {
-    // console.log(state)
    return state.session ? {loggedIn: state.session.isAuthenticated} : {loggedIn: false};
 };
 

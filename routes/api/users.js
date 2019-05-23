@@ -17,7 +17,6 @@ router.get("/test", (req, res) => res.json({ msg: "This is the users route"}));
 
 // User auth route test via get
 router.get("/current", passport.authenticate('jwt', {session: false}), (req, res) => {
-    console.log(req.user);
    return res.json({
        id: req.user.id,
        username: req.user.username,
@@ -37,6 +36,31 @@ router.patch("/update", (req, res) => {
                   user.lastname = req.body.lastname;
                   user.description = req.body.description;
                   user.save()
+                      .then(user => {
+                          const payload = {
+                              id: user.id,
+                              username: user.username,
+                              email: user.email,
+                              description: user.description,
+                              name: user.name,
+                              lastname: user.lastname,
+                              followers: user.followers,
+                              following: user.following,
+                              profileURL: user.profileURL
+                              
+                          }
+                          jwt.sign(
+                              payload,
+                              keys.secretOrKey,
+                              { expiresIn: 3600 },
+                              (err, token) => {
+                                  res.json({
+                                      sucess: true,
+                                      token: "Bearer " + token
+                                  });
+                              }
+                          )
+                      })
             }
             else {
                 return res.status(400).json({ noUserFound: "No user found" })
@@ -44,6 +68,8 @@ router.patch("/update", (req, res) => {
             
         })
 })
+
+
 
 // User register route
 router.post("/register", (req, res) => {
@@ -73,9 +99,15 @@ router.post("/register", (req, res) => {
                         newUser.save()
                         .then(user => {
                             const payload = {
-                                id: user.id,
+                                _id: user.id,
                                 username: user.username,
-                                email: user.email
+                                email: user.email,
+                                name: user.name,
+                                lastname: user.lastname,
+                                description: user.description,
+                                profileURL: user.profileURL,
+                                followers: user.followers,
+                                following: user.following
                             }
                             jwt.sign(
                                 payload,
@@ -111,21 +143,26 @@ router.post("/login", (req, res) => {
     const password = req.body.password;
 
     User.findOne({email})
+        .populate('following')
+        .populate('followers')
         .then( user => {
             if (!user) {
                 return res.status(400).json({email: 'The email you entered does not belong to an account'})
             }
-
+            
             bcrypt.compare(password, user.password)
                 .then(isMatch => {
                     if (isMatch) {
                         const payload = {
-                            id: user.id,
+                            _id: user.id,
                             username: user.username,
                             email: user.email,
                             name: user.name,
                             lastname: user.lastname,
-                            description: user.description
+                            description: user.description,
+                            profileURL: user.profileURL,
+                            followers: user.followers,
+                            following: user.following
                         }
                         jwt.sign(
                             payload,
@@ -150,8 +187,108 @@ router.post("/login", (req, res) => {
 
 router.get('/:username', (req, res) => {
     User.findOne({username: req.params.username})
-        .then(user => res.json(user))
+        .populate('following')
+        .populate('followers')
+        .then(user => {
+            const userData = {
+                _id: user.id,
+                username: user.username,
+                email: user.email,
+                name: user.name,
+                lastname: user.lastname,
+                description: user.description,
+                followers: user.followers,
+                following: user.following,
+                profileURL: user.profileURL,
+            }
+            res.json(userData)
+        })
         .catch(err => res.status(404).json({ noUserFound: 'No User found with matching ID' }))
+})
+
+router.post('/:username/follow', passport.authenticate('jwt', { session: false }), (req, res) => {
+    debugger
+    User.findOne({username: req.params.username})
+        .populate('following')
+        .populate('followers')
+        .then(user => {
+            user.followers.push(req.user._id);
+            return user.save();
+        }).then( user =>{
+            User.findOne({username: req.user.username})
+            .populate('following')
+            .populate('followers')
+            .then( currentUser => {
+                currentUser.following.push(user._id)
+                return currentUser.save()
+            } )
+            .then( currentUser => {
+                const payload = {
+                    _id: currentUser._id,
+                    username: currentUser.username,
+                    email: currentUser.email,
+                    description: currentUser.description,
+                    name: currentUser.name,
+                    lastname: currentUser.lastname,
+                    followers: currentUser.followers,
+                    following: currentUser.following,
+                    profileURL: currentUser.profileURL
+                }
+                jwt.sign(
+                    payload,
+                    keys.secretOrKey,
+                    { expiresIn: 3600 },
+                    (err, token) => {
+                        res.json({
+                            sucess: true,
+                            token: "Bearer " + token,
+                            targetUser: user
+                        });
+                    }
+                )
+            })
+        } )
+})
+router.post('/:username/unfollow', passport.authenticate('jwt', { session: false }), (req, res) => {
+    User.findOne({username: req.params.username})
+        .then(user => {
+            let updatedFollowers = user.followers.filter(id => id.toString() !== req.user._id.toString());
+            user.followers = updatedFollowers;
+            return user.save();
+        }).then( user =>{
+            User.findOne({username: req.user.username})
+            .then( currentUser => {
+                let currentUserUpdatedFollowing = currentUser.following.filter( id => id.toString() !== user._id.toString())
+                debugger
+                currentUser.following = currentUserUpdatedFollowing;
+                return currentUser.save();
+            } )
+            .then( currentUser => {
+                const payload = {
+                    _id: currentUser._id,
+                    username: currentUser.username,
+                    email: currentUser.email,
+                    description: currentUser.description,
+                    name: currentUser.name,
+                    lastname: currentUser.lastname,
+                    followers: currentUser.followers,
+                    following: currentUser.following,
+                    profileURL: currentUser.profileURL
+                }
+                jwt.sign(
+                    payload,
+                    keys.secretOrKey,
+                    { expiresIn: 3600 },
+                    (err, token) => {
+                        res.json({
+                            sucess: true,
+                            token: "Bearer " + token,
+                            targetUser: user
+                        });
+                    }
+                )
+            })
+        } )
 })
 
 module.exports = router;

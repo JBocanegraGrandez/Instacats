@@ -51,7 +51,8 @@ html {
   box-sizing: inherit;
 }
 
-a {
-  
+a, a:visited {
+  color: #262626;
   text-decoration: none;
 }
+

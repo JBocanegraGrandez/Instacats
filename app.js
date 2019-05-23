@@ -13,6 +13,7 @@ const User = require('./models/User');
 //  Routes:
 const users = require("./routes/api/users");
 const posts = require("./routes/api/posts");
+const upload = require("./routes/api/upload")
 
 // MongoDb Connect
 
@@ -39,6 +40,7 @@ app.use(bodyParser.json())
 // Use routes
 app.use("/api/users", users);
 app.use("/api/posts", posts);
+app.use("/api/upload", upload);
 
 // Heroku or localhost
 const port = process.env.PORT || 5000;
