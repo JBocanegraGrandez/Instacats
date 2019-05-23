@@ -13,6 +13,7 @@ class Post extends React.Component {
 
     componentWillMount() {
         this.props.fetchPosts()
+        this.props.fetchUsers()
     }
 
     componentWillReceiveProps(newState) {
