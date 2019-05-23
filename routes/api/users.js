@@ -206,6 +206,38 @@ router.get('/:username', (req, res) => {
         .catch(err => res.status(404).json({ noUserFound: 'No User found with matching ID' }))
 })
 
+
+// Get all users 
+
+// router.get("/", (req, res) => {
+//     User.find()
+//         .then(users => res.json(users))
+//         .catch(err => res.status(400).json({ noUsersFound: 'No Users found' }))
+// })
+
+router.get("/", (req, res) => {
+    let usersArr = []
+    User.find()
+        .then((users) => {
+            users.map( user => {
+                const userData = {
+                    _id: user.id,
+                    username: user.username,
+                    email: user.email,
+                    name: user.name,
+                    lastname: user.lastname,
+                    description: user.description,
+                    followers: user.followers,
+                    following: user.following,
+                    profileURL: user.profileURL
+                }
+            usersArr.push(userData)
+            })
+         res.json(usersArr)
+        })
+})
+
+
 router.post('/:username/follow', passport.authenticate('jwt', { session: false }), (req, res) => {
     debugger
     User.findOne({username: req.params.username})
