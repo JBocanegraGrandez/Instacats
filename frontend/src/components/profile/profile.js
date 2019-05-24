@@ -30,8 +30,13 @@ class Profile extends React.Component {
     this.setState({ [modal]: true });
   }
 
-
+  fetchFromModal() {
+    if (this.state.followingModal) {
+      this.props.fetchUsers()
+    }
+  }
   componentWillMount() {
+    this.props.fetchUsers()
     this.setState({followingModal: false})
     this.props.setUserLoading();
     this.props.fetchUser(this.props.match.params.username).then(() => {
@@ -48,6 +53,8 @@ class Profile extends React.Component {
     if (prevProps.match.params.username !== this.props.match.params.username) {
       this.props.fetchUser(this.props.match.params.username).then(() => {
         this.props.fetchUserPosts(this.props.user._id)
+        this.modifyModal("followingModal", false)
+        this.modifyModal("followersModal", false)
       });
     }
   }
@@ -67,6 +74,16 @@ class Profile extends React.Component {
   }
 
   render() {
+    let followersArr = []
+    this.props.user.followers.forEach(follower => {
+      return followersArr.push(this.props.users[follower])
+    })
+
+    let followingArr = []
+    this.props.user.following.forEach(followee => {
+      return followingArr.push(this.props.users[followee])
+    })
+
     return (
       <div className="Profile-wrapper">
         <div className="Profile-holder">
@@ -104,7 +121,9 @@ class Profile extends React.Component {
                     posts
                   </span>
                 </li>
-                <li className="Profile-stats-info">
+                <li className="Profile-stats-info"
+                  onClick={() => this.showModal("followersModal")}
+                >
                   <span>
                     <span className="stats-numbers">
                       {this.props.user.followers.length}
@@ -154,11 +173,20 @@ class Profile extends React.Component {
           <div>{this.isEmpty()}</div>
         </div>
         <FollowList
-          followersShow={this.state.followersModal}
-          followingShow={this.state.followingModal}
+          modalShow={this.state.followingModal}
+          type={"followingModal"}
           modifyModal={this.modifyModal}
           currentUser={this.props.currentUser}
           user={this.props.user}
+          users={followingArr}
+        />
+        <FollowList
+          modalShow={this.state.followersModal}
+          type={"followersModal"}
+          modifyModal={this.modifyModal}
+          currentUser={this.props.currentUser}
+          user={this.props.user}
+          users={followersArr}
         />
       </div>
     );

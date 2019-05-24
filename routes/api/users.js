@@ -143,8 +143,6 @@ router.post("/login", (req, res) => {
     const password = req.body.password;
 
     User.findOne({email})
-        .populate('following')
-        .populate('followers')
         .then( user => {
             if (!user) {
                 return res.status(400).json({email: 'The email you entered does not belong to an account'})
@@ -187,8 +185,6 @@ router.post("/login", (req, res) => {
 
 router.get('/:username', (req, res) => {
     User.findOne({username: req.params.username})
-        .populate('following')
-        .populate('followers')
         .then(user => {
             const userData = {
                 _id: user.id,
@@ -216,10 +212,10 @@ router.get('/:username', (req, res) => {
 // })
 
 router.get("/", (req, res) => {
-    let usersArr = []
+    let usersObj = {}
     User.find()
         .then((users) => {
-            users.map( user => {
+            users.forEach( user => {
                 const userData = {
                     _id: user.id,
                     username: user.username,
@@ -231,9 +227,9 @@ router.get("/", (req, res) => {
                     following: user.following,
                     profileURL: user.profileURL
                 }
-            usersArr.push(userData)
+            usersObj[user.id]=userData
             })
-         res.json(usersArr)
+         res.json(usersObj)
         })
 })
 
@@ -241,15 +237,11 @@ router.get("/", (req, res) => {
 router.post('/:username/follow', passport.authenticate('jwt', { session: false }), (req, res) => {
     debugger
     User.findOne({username: req.params.username})
-        .populate('following')
-        .populate('followers')
         .then(user => {
             user.followers.push(req.user._id);
             return user.save();
         }).then( user =>{
             User.findOne({username: req.user.username})
-            .populate('following')
-            .populate('followers')
             .then( currentUser => {
                 currentUser.following.push(user._id)
                 return currentUser.save()

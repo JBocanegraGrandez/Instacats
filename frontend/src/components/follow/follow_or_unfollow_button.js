@@ -30,7 +30,7 @@ class FollowOrUnfollowButton extends React.Component {
 
     followOrUnfollow() {
         let result = this.props.currentUser.following.filter(followingUser => (
-            followingUser._id === this.props.user._id
+            followingUser === this.props.user._id
         ));
 
 
@@ -63,7 +63,6 @@ class FollowOrUnfollowButton extends React.Component {
 
     getButton() {
         if (this.props.user.username === this.props.currentUser.username && this.props.profilePage === 'true') {
-          console.log(this.props.username)
             return (
                 <span className="getbutton-holder">
                     <Link to={"/accounts/edit"} className="Edit-profile">

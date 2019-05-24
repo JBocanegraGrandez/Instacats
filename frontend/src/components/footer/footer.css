@@ -18,6 +18,9 @@
     margin: 0 auto;
     text-transform: uppercase;
     width: 100%;
+    bottom: 0;
+    position: fixed;
+    background-color: #fafafa
 }
 
 .Footer-nav {

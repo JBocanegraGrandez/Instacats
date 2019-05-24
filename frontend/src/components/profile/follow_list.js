@@ -6,15 +6,9 @@ import "./profile.css";
 import FollowOrUnfollowButton from '../follow/follow_or_unfollow_button_container'
 
 class FollowList extends React.Component {
-    followersShow() {
-        if (!this.props.followersShow) {
-            return { display: 'none' }
-        } else {
-            return
-        }
-    }
-    followingShow() {
-        if (!this.props.followingShow) {
+    
+    modalShow() {
+        if (!this.props.modalShow) {
             return { display: 'none' }
         } else {
             return
@@ -24,27 +18,41 @@ class FollowList extends React.Component {
     stopProp(e) {
         e.stopPropagation()
     }
+
+    getTitle(){
+      if (this.props.type === "followersModal") {
+        return "Followers"
+      } 
+      else if (this.props.type === "followingModal") {
+        return "Following"
+      }
+    }
   
     render() {
-      let userArr = this.props.user.following;
+      let userArr
+        if (!this.props.users) {
+          userArr = []
+        } else {
+          userArr = this.props.users
+        }
         return (
           <div
             className="FollowList-z"
-            style={this.followingShow()}
+            style={this.modalShow()}
             onClick={() =>
-              this.props.modifyModal("followingModal", false)
+              this.props.modifyModal(this.props.type, false)
             }
           >
             <div className="FollowList-holder" onClick={this.stopProp}>
               <div className="FollowList-title-holder">
                 <div className="FollowList-title-corner" />
                 <h1 className="FollowList-title-main">
-                  <div>title</div>
+                  <div>{this.getTitle()}</div>
                 </h1>
                 <div className="FollowList-title-corner">
                   <button
                     onClick={() =>
-                      this.props.modifyModal("followingModal", false)
+                      this.props.modifyModal(this.props.type, false)
                     }
                     className="FollowList-title-exit"
                   >
@@ -56,7 +64,6 @@ class FollowList extends React.Component {
               <div className="FollowList-ul-wrapper">
                 <ul className="FollowList-ul-holder">
                 { userArr.map( following => {
-                  
                   return (
                     <li className="FollowList-ul-li" key={following._id}>
                       <div className="FollowList-ul-li-div">
