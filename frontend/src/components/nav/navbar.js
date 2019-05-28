@@ -6,6 +6,7 @@ import kitty from '../../kitty-small.png';
 import heart from '../../heart-small.png';
 import compass from '../../compass-small.png';
 import NotificationModal from "../notifications/notifications_modal";
+import CreatePostModal from "../upload/file_upload"
 
 import "./nav.css"; 
 
@@ -15,7 +16,8 @@ class NavBar extends React.Component {
     super(props);
 
     this.state = {
-      notificationsModal: false
+      notificationsModal: false,
+      createPostModal: false
     };
 
     this.logoutUser = this.logoutUser.bind(this);
@@ -52,11 +54,15 @@ class NavBar extends React.Component {
     if (this.props.loggedIn) {
       return (
         <div className="Nav-bar-icon-holder">
-            <div>
-              <Link to={"/posts/new"}>
-                <div className="sprite-post" />
-              </Link>
-            </div>
+          <div onClick={() => this.toogleModal("createPostModal")}>
+              <div className="sprite-post" />
+              <CreatePostModal
+                show={this.state.createPostModal}
+                modifyModal={this.modifyModal}
+                title="Create new Post"
+                type="NEW_POST"
+              />
+          </div>
           <div className="link-icon">
             <Link to={"/posts"}>
               <img

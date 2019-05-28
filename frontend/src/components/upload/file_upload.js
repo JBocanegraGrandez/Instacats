@@ -19,7 +19,11 @@ class SimpleReactFileUpload extends React.Component {
     onFormSubmit(e) {
         e.preventDefault() // Stop form submit
         this.fileUpload(this.state.file).then((response) => {
+          const user = this.props.currentUser
+          user.profileURL = response.data['imageURL']
+          this.props.patchUser(user);
             this.props.modifyModal(false);
+            
         })
     }
     onChange(e) {

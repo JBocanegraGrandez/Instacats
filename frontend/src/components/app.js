@@ -11,7 +11,7 @@ import ProfileContainer from '../components/profile/profile_container';
 import PostsContainer from "../components/posts/posts_container";
 import PostComposeContainer from "../components/posts/post_compose_container";
 import EditProfile from '../components/profile/edit_profile_container'
-import EditPassword from '../components/profile/edit_password'
+import EditPassword from '../components/profile/edit_password_container'
 
 import FileUpload from '../components/upload/file_upload'
 

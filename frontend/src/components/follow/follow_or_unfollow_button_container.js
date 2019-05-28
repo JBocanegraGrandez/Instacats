@@ -4,22 +4,6 @@ import { fetchUser, receiveUser, followUser, unfollowUser } from '../../actions/
 import { logout } from '../../actions/session_actions';
 import FollowOrUnfollowButton from './follow_or_unfollow_button';
 
-// const mapStateToProps = (state, ownProps) => {
-//     const defaultUser = {
-//         description: "",
-//         email: "loading...",
-//         followers: [],
-//         following: [],
-//         lastname: "loading...",
-//         name: "loading...",
-//         username: "loading...",
-//     }
-//     return {
-//         posts: Object.values(state.posts.user),
-//         currentUser: state.session.user,
-//         user: { ...defaultUser, ...state.user }
-//     };
-// };
 
 const mapDispatchToProps = dispatch => {
     const defaultUser = {

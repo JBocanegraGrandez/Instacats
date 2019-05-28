@@ -14,4 +14,12 @@ export const getUserPosts = id => {
 
 export const writePost = data => {
     return axios.post('/api/posts/', data)
+};
+
+export const likePost = id => {
+    return axios.post(`/api/posts/${id}/like`)
+}
+
+export const dislikePost = id => {
+    return axios.post(`/api/posts/${id}/dislike`)
 }

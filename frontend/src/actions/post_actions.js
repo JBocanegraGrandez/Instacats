@@ -1,4 +1,4 @@
-import { getPosts, getUserPosts, writePost } from '../util/post_api_util';
+import { getPosts, getUserPosts, writePost, likePost, dislikePost } from '../util/post_api_util';
 
 export const RECEIVE_POSTS = "RECEIVE_POSTS";
 export const RECEIVE_USER_POSTS = "RECEIVE_USER_POSTS";
@@ -36,3 +36,17 @@ export const composePost = data => dispatch => (
         .then(post => dispatch(receiveNewPost(post)))
         .catch(err => console.log(err))
 );
+
+export const addLikeToPost = id => dispatch => (
+    likePost(id)
+        .then((post) => getPosts()
+            .then(posts => dispatch(receivePosts(posts)))
+        )
+)
+
+export const removeLikeToPost = id => dispatch => (
+    dislikePost(id)
+        .then((post) => getPosts()
+            .then(posts => dispatch(receivePosts(posts)))
+        )
+)

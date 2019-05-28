@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import "./profile.css"
 import UploadProfilePic from "../upload/file_upload"
 
@@ -19,9 +19,8 @@ class EditProfile extends React.Component {
     this.modifyModal = this.modifyModal.bind(this)
   }
 
-  componentWillMount() {
-    
-  }
+
+  
 
   // Handle field updates (called in the render method)
   update(field) {
@@ -195,11 +194,13 @@ class EditProfile extends React.Component {
         <UploadProfilePic
           show={this.state.modal}
           modifyModal={this.modifyModal}
-          title='Change Profile Photo' 
+          title='Change Profile Photo'
+          patchUser={this.props.patchUser}
+          currentUser={this.props.currentUser}
         />
       </div>
     );
   }
 }
 
-export default EditProfile;
+export default withRouter(EditProfile);

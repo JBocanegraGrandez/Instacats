@@ -61,7 +61,7 @@ class NotificationModal extends React.Component {
                                 <ul className="Notification-holder-div">
                                 {notificationsArr.map( notification => {
                                     return(
-                                        <li className="Notification-div-li">
+                                        <li className="Notification-div-li" key={notification._id}>
                                             <div className="Notification-li-profile-pic-wrapper">
                                                 <div className="Notification-li-profile-pic-holder">
                                                     <div className="Notification-li-profile-pic">

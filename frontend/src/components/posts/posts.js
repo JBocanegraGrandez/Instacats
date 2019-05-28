@@ -28,7 +28,10 @@ class Post extends React.Component {
                 <main className='Posts-main'>
                     <section className="Postbox-narrow">
                         {this.state.posts.map(post =>(
-                            <PostBox key={post._id} url={post.img} caption={post.caption} author={post.user.username} date={post.date} authorPic={post.user.profileURL}/>
+                            <PostBox key={post._id} post={post} 
+                            removeLikeToPost={this.props.removeLikeToPost}
+                            currentUser={this.props.currentUser}
+                            addLikeToPost={this.props.addLikeToPost}/>
                         ))}
                     </section>
                 </main>
