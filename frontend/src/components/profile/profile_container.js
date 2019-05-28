@@ -4,6 +4,12 @@ import { fetchUser, fetchUsers, receiveUser, followUser, unfollowUser} from '../
 import { logout } from '../../actions/session_actions';
 import Profile from './profile';
 
+function findUserbyUsername(state, username){
+    return Object.values(state.users).find( (user) => {
+        return user.username === username
+    })
+}
+
 const mapStateToProps = (state, ownProps) => {
     const defaultUser = {
         description: "",
@@ -14,11 +20,12 @@ const mapStateToProps = (state, ownProps) => {
         name: "loading...",
         username: "loading...",
     }
+    const foundUser = findUserbyUsername(state, ownProps.match.params.username)    
     const defaultUsers = {}
     return {
       posts: Object.values(state.posts.user),
       currentUser: state.session.user,
-      user: {...defaultUser, ...state.user},
+      user: {...defaultUser, ...foundUser},
       users: {...defaultUsers, ...state.users}
     };
 };
@@ -34,7 +41,6 @@ const mapDispatchToProps = dispatch => {
         username: "loading...",
     }
     return{
-        setUserLoading: () => dispatch(receiveUser({data: defaultUser})),
         fetchUserPosts: id => dispatch(fetchUserPosts(id)),
         fetchUser: username => dispatch(fetchUser(username)),
         fetchUsers: username => dispatch(fetchUsers()),

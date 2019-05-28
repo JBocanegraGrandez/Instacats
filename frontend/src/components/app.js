@@ -28,6 +28,7 @@ const App = () => (
          <ProtectedRoute exact path="/accounts/edit" component={EditProfile} />
          <ProtectedRoute exact path="/accounts/password" component={EditPassword} />
          <ProtectedRoute exact path="/posts" component={PostsContainer} />
+         <ProtectedRoute exact path="/posts/new" component={PostComposeContainer} />
          <ProtectedRoute exact path="/profile" component={ProfileContainer} />
          <ProtectedRoute exact path="/new_post" component={PostComposeContainer} />
          <ProtectedRoute path="/:username" component={ProfileContainer} />

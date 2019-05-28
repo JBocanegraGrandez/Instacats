@@ -1,11 +1,7 @@
 import React from 'react';
-// import PostBox from '../posts/post_box';
-// import Pic from '../../profile.jpg'
 import './profile.css'
 import PostDisplayItem from '../posts/post_display_item';
-import { Link } from 'react-router-dom'
 import FollowList from './follow_list'
-import { Route } from 'react-router-dom';
 
 import FollowOrUnfollowButton from '../follow/follow_or_unfollow_button_container';
 
@@ -35,10 +31,9 @@ class Profile extends React.Component {
       this.props.fetchUsers()
     }
   }
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchUsers()
     this.setState({followingModal: false})
-    this.props.setUserLoading();
     this.props.fetchUser(this.props.match.params.username).then(() => {
       this.props.fetchUserPosts(this.props.user._id);
     });
@@ -76,11 +71,17 @@ class Profile extends React.Component {
   render() {
     let followersArr = []
     this.props.user.followers.forEach(follower => {
+      if (!this.props.users[follower]) {
+        return
+      }
       return followersArr.push(this.props.users[follower])
     })
 
     let followingArr = []
     this.props.user.following.forEach(followee => {
+      if (!this.props.users[followee]){
+        return
+      }
       return followingArr.push(this.props.users[followee])
     })
 

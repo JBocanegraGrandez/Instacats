@@ -19,6 +19,12 @@ router.post("/", singleUpload, passport.authenticate('jwt', { session: false }),
     return res.json({'imageURL': req.file.location}) 
 });
 
+router.post("/picture", singleUpload, function (req, res) {
+
+    return res.json({'imageURL': req.file.location}) 
+});
+
+
 
 // router.post("/", singleUpload, passport.authenticate('jwt', { session: false }), function (req, res) {
 //     new Post ({

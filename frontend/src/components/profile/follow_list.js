@@ -1,7 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import "./profile.css";
 import FollowOrUnfollowButton from '../follow/follow_or_unfollow_button_container'
 
@@ -31,9 +29,10 @@ class FollowList extends React.Component {
     render() {
       let userArr
         if (!this.props.users) {
-          userArr = []
+          return ""
         } else {
           userArr = this.props.users
+
         }
         return (
           <div

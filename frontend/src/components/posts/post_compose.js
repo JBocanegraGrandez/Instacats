@@ -6,50 +6,86 @@ class PostCompose extends React.Component {
         super(props);
 
         this.state = {
-            text: "",
+            caption: "",
             newPost: ""
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentWillReceiveProps(nextProps) {
-        this.setState({newPost: nextProps.newPost.text});
-    }
+    // componentWillReceiveProps(nextProps) {
+    //     this.setState({newPost: nextProps.newPost.caption});
+    // }
 
     handleSubmit(e) {
         e.preventDefault();
         let post = {
-            text: this.state.text
+            caption: this.state.caption
         };
 
         this.props.composePost(post);
-        this.setState({text: ''})
+        this.setState({caption: ''})
     }
 
-    update(){
+    update(field){
         return e => this.setState({
-            text: e.currentTarget.value
+            [field]: e.currentTarget.value
         });
     }
 
     render() {
         return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <div>
-                        <input type="textarea"
-                            value={this.state.text}
-                            onChange={this.update()}
-                            placeholder="Write your caption..."
-                        />
-                        <input type="submit" value="Submit" />
+          <div className="Profile-wrapper">
+            <div className="Profile-holder-edit">
+              <form onSubmit={this.handleSubmit} className="Profile-edit-wrapper">
+                <div className="Post-new-header-holder">
+                  <div className="Post-new-header-pic-wrapper" />
+                  <div className="Post-new-header-details">
+                    <div className="Post-new-caption-holder">
+                      <textarea
+                        onChange={this.update('caption')}
+                        className="Post-new-caption"
+                        placeholder="Write a caption..."
+                        autoComplete="off"
+                        autoCorrect="off"
+                        value={this.state.caption}
+                      />
                     </div>
-                </form>
-                <br />
-                <PostBox url={this.state.newPost} />
+                  </div>
+                </div>
+                <div className="New-Post-Input-holder">
+                  <div className="New-Post-Input-wrapper">
+                    <aside className="New-Post-aside">
+                        <label htmlFor="input-tag">Tag People</label>
+                    </aside>
+                    <div className="New-Post-div">
+                        <input id="input-tag" />
+                    </div>
+                  </div>
+                  <div className="New-Post-Input-wrapper">
+                    <aside className="New-Post-aside">
+                        <label htmlFor="input-location">Add Location</label>
+                    </aside>
+                    <div className="New-Post-div">
+                        <input id="input-location" />
+                    </div>
+                  </div>
+                  <div className="New-Post-Input-wrapper">
+                    <aside className="New-Post-aside">
+                        <label></label>
+                    </aside>
+                    <div className="New-Post-div">
+                        <div className="Edit-Profile-submit">
+                            <button className="Submit-button">Share</button>
+                        </div>
+                    </div>
+                  </div>
+    
+                </div>
+              </form>
             </div>
-        )
+          </div>
+        );
     }
 }
 

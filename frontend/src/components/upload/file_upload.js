@@ -62,7 +62,7 @@ class SimpleReactFileUpload extends React.Component {
                 <div className="Upload-Profile-pic-holder" onClick={this.stopProp}>
                   <div className="Upload-Profile-pic-title-holder">
                     <h3 className="Upload-Profile-pic-title">
-                      Change Profile Photo
+                      {this.props.title}
                     </h3>
                   </div>
                   <div className="Upload-Profile-pic-buttons">

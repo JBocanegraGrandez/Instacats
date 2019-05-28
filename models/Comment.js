@@ -13,6 +13,8 @@ const CommentSchema = new Schema({
         required: true
     },
 
+    comments: [],
+
     date: {
         type: Date,
         default: Date.now

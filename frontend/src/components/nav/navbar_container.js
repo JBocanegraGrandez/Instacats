@@ -3,10 +3,14 @@ import { logout } from '../../actions/session_actions';
 
 import NavBar from './navbar';
 
-const mapStateToProps = state => ({
-    loggedIn: state.session.isAuthenticated,
-    currentUser: state.session.user
-});
+const mapStateToProps = state => {
+    
+    return ({
+        loggedIn: state.session.isAuthenticated,
+        currentUser: state.session.user,
+        users: state.users     
+    })
+};
 
 export default connect(
     mapStateToProps,

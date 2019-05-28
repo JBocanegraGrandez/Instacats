@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const express = require("express");
 const router = express.Router();
 const User = require('../../models/User');
+const Notification = require('../../models/Notification');
 const bcrypt = require('bcryptjs');
 const keys = require('../../config/keys');
 const passport = require('passport');
@@ -46,7 +47,8 @@ router.patch("/update", (req, res) => {
                               lastname: user.lastname,
                               followers: user.followers,
                               following: user.following,
-                              profileURL: user.profileURL
+                              profileURL: user.profileURL,
+                              notifications: user.notifications
                               
                           }
                           jwt.sign(
@@ -107,7 +109,8 @@ router.post("/register", (req, res) => {
                                 description: user.description,
                                 profileURL: user.profileURL,
                                 followers: user.followers,
-                                following: user.following
+                                following: user.following,
+                                notifications: user.notifications
                             }
                             jwt.sign(
                                 payload,
@@ -160,7 +163,8 @@ router.post("/login", (req, res) => {
                             description: user.description,
                             profileURL: user.profileURL,
                             followers: user.followers,
-                            following: user.following
+                            following: user.following,
+                            notifications: user.notifications
                         }
                         jwt.sign(
                             payload,
@@ -196,6 +200,7 @@ router.get('/:username', (req, res) => {
                 followers: user.followers,
                 following: user.following,
                 profileURL: user.profileURL,
+                notifications: user.notifications
             }
             res.json(userData)
         })
@@ -205,11 +210,6 @@ router.get('/:username', (req, res) => {
 
 // Get all users 
 
-// router.get("/", (req, res) => {
-//     User.find()
-//         .then(users => res.json(users))
-//         .catch(err => res.status(400).json({ noUsersFound: 'No Users found' }))
-// })
 
 router.get("/", (req, res) => {
     let usersObj = {}
@@ -225,7 +225,8 @@ router.get("/", (req, res) => {
                     description: user.description,
                     followers: user.followers,
                     following: user.following,
-                    profileURL: user.profileURL
+                    profileURL: user.profileURL,
+                    notifications: user.notifications
                 }
             usersObj[user.id]=userData
             })
@@ -238,6 +239,11 @@ router.post('/:username/follow', passport.authenticate('jwt', { session: false }
     debugger
     User.findOne({username: req.params.username})
         .then(user => {
+            const newNotification = new Notification({
+                author: req.user._id,
+                type: "FOLLOW",
+            })
+            user.notifications.push(newNotification);
             user.followers.push(req.user._id);
             return user.save();
         }).then( user =>{
@@ -256,7 +262,8 @@ router.post('/:username/follow', passport.authenticate('jwt', { session: false }
                     lastname: currentUser.lastname,
                     followers: currentUser.followers,
                     following: currentUser.following,
-                    profileURL: currentUser.profileURL
+                    profileURL: currentUser.profileURL,
+                    notifications: currentUser.notifications
                 }
                 jwt.sign(
                     payload,
@@ -297,7 +304,8 @@ router.post('/:username/unfollow', passport.authenticate('jwt', { session: false
                     lastname: currentUser.lastname,
                     followers: currentUser.followers,
                     following: currentUser.following,
-                    profileURL: currentUser.profileURL
+                    profileURL: currentUser.profileURL,
+                    notifications: currentUser.notifications
                 }
                 jwt.sign(
                     payload,

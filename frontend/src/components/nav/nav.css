@@ -79,16 +79,29 @@
 }
 
 .Nav-bar-icon-holder {
-  display: flex;
-  flex-direction: row;
-  padding-left: 24px;
-  white-space: nowrap;
+    display: flex;
+    flex-direction: row;
+    padding-left: 24px;
+    white-space: nowrap;
 }
 
 .link-icon {
     margin-left: 30px;
 }
 
-.Nav-bar-icon-holder:not(:first-child) {
-  margin-left: 30px;
+
+.sprite-heart {
+    background-position: -271px -234px;
+    background-repeat: no-repeat;
+    background-image: url('https://www.instagram.com/static/bundles/es6/sprite_glyphs_732af3e467e9.png/732af3e467e9.png');
+    height: 24px;
+    width: 24px;
+}
+
+.sprite-post {
+    background-position: -297px -155px;
+    background-repeat: no-repeat;
+    background-image: url('https://www.instagram.com/static/bundles/es6/sprite_glyphs_732af3e467e9.png/732af3e467e9.png');
+    height: 24px;
+    width: 24px;
 }

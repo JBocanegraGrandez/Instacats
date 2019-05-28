@@ -313,3 +313,110 @@
     flex-direction: row;
     margin-bottom: 28px;
 }
+
+.Post-new-header-pic-wrapper {
+    height: 190px;
+    width: 190px;
+    margin: 2px 32px 0 124px;
+    background-color: #3897f0;
+    flex-shrink: 0;
+}
+
+.Post-new-header-details {
+    flex: 1 1 auto;
+    margin-right: 20px;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    margin-right: 100px;
+}
+
+.Post-new-caption-holder {
+    padding-left: 16px;
+    padding-right: 16px;
+    border-top: 1px solid #efefef;
+    color: #999;
+    flex-shrink: 0;
+    font-size: 14px;
+    line-height: 18px;
+    min-height: 174px;
+    justify-content: center;
+    /* margin-top: 16px; */
+    padding-top: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.Post-new-caption {
+    background: 0 0;
+    border: 0;
+    color: #262626;
+    font-size: inherit;
+    height: 18px;
+    max-height: 190px;
+    width: auto;
+    outline: 0;
+    padding: 0;
+    resize: none;
+    height: 18px;
+    flex-grow: 1;
+}
+
+.New-Post-aside {
+    box-sizing: border-box;
+    color: #262626;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 18px;
+    /* padding-left: 32px;
+    padding-right: 32px; */
+    margin-left: 24px;
+    margin-right: 32px;
+    text-align: right;
+    flex: 0 0 194px;
+    margin-right: 28px
+}
+
+.Post-new-header-holder {
+    flex-direction: row;
+    margin: 32px 0 0;
+    justify-content: flex-start;
+    display: flex;
+    /* border-bottom: 1px solid #efefef; */
+}
+
+.New-Post-Input-wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 24px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    border-top: 1px solid #efefef;
+
+}
+
+.New-Post-Input-wrapper:not(:first-child) {
+    margin-top: 0;
+}
+
+.New-Post-div {
+    display: flex;
+    flex-direction: row;
+    margin-left: 16px;
+    padding-right: 60px;
+    color: #262626;
+    flex-grow: 1;
+    font-size: 16px;
+    justify-content: flex-start;
+}
+
+.New-Post-Input-holder {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 100px;
+    margin-right: 100px;
+}

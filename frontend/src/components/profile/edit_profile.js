@@ -195,6 +195,7 @@ class EditProfile extends React.Component {
         <UploadProfilePic
           show={this.state.modal}
           modifyModal={this.modifyModal}
+          title='Change Profile Photo' 
         />
       </div>
     );

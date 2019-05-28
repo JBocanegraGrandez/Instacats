@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const Notification = require("./Notification").schema
 
 const UserSchema = new Schema({
 
@@ -37,6 +38,9 @@ const UserSchema = new Schema({
         type: String,
         required: false
     },
+
+
+    notifications: [{type: Notification}],
 
     
     followers: [{ type: Schema.Types.ObjectId, ref: 'users'}],
