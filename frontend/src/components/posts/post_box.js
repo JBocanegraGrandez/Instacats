@@ -84,7 +84,7 @@ class PostBox extends React.Component {
                             return (
                                 <li className="Li-comment" key={comment._id}>
                                     <div className="Div-comment">
-                                        <h2 className="username"><Link to={`hello`} className="username-link">{comment.author}</Link></h2><span>{comment.body}</span>
+                                        <h2 className="username"><Link to={`hello`} className="username-link">{this.props.users[comment.author].username}</Link></h2><span>{comment.body}</span>
                                     </div>
                                 </li>
                             )

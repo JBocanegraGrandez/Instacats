@@ -31,7 +31,9 @@ class Post extends React.Component {
                             <PostBox key={post._id} post={post} 
                             removeLikeToPost={this.props.removeLikeToPost}
                             currentUser={this.props.currentUser}
-                            addLikeToPost={this.props.addLikeToPost}/>
+                            addLikeToPost={this.props.addLikeToPost}
+                            users={this.props.users}
+                            />
                         ))}
                     </section>
                 </main>
