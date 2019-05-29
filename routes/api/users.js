@@ -54,7 +54,7 @@ router.patch("/update", (req, res) => {
                           jwt.sign(
                               payload,
                               keys.secretOrKey,
-                              { expiresIn: 3600 },
+                              { expiresIn: 36000 },
                               (err, token) => {
                                   res.json({
                                       sucess: true,
@@ -115,7 +115,7 @@ router.post("/register", (req, res) => {
                             jwt.sign(
                                 payload,
                                 keys.secretOrKey,
-                                { expiresIn: 3600 },
+                                { expiresIn: 36000 },
                                 (err, token) => {
                                     res.json({
                                         sucess: true,
@@ -169,7 +169,7 @@ router.post("/login", (req, res) => {
                         jwt.sign(
                             payload,
                             keys.secretOrKey,
-                            { expiresIn: 3600},
+                            { expiresIn: 36000},
                             (err, token) => {
                                 res.json({ 
                                     sucess: true,
@@ -268,7 +268,7 @@ router.post('/:username/follow', passport.authenticate('jwt', { session: false }
                 jwt.sign(
                     payload,
                     keys.secretOrKey,
-                    { expiresIn: 3600 },
+                    { expiresIn: 36000 },
                     (err, token) => {
                         res.json({
                             sucess: true,
@@ -310,7 +310,7 @@ router.post('/:username/unfollow', passport.authenticate('jwt', { session: false
                 jwt.sign(
                     payload,
                     keys.secretOrKey,
-                    { expiresIn: 3600 },
+                    { expiresIn: 36000 },
                     (err, token) => {
                         res.json({
                             sucess: true,

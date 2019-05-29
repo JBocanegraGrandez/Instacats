@@ -33,6 +33,8 @@ class Post extends React.Component {
                             currentUser={this.props.currentUser}
                             addLikeToPost={this.props.addLikeToPost}
                             users={this.props.users}
+                            addCommentToPost={this.props.addCommentToPost}
+                            fetchPosts={this.props.fetchPosts}
                             />
                         ))}
                     </section>

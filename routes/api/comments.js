@@ -12,13 +12,14 @@ router.post("/:postId", passport.authenticate("jwt", {session: false}), (req, re
             const newComment = new Comment({
                 author: req.user.id,
                 body: req.body.body,
-                postId: req.params.postId
+                postId: req.body.postId
             })
 
            post.comments.push(newComment);
            post.save().then(post => res.json(post))
         })
-        .catch(err => res.status(404).json({noPostFound: "No post found"}))
+        .catch(err => {
+            res.status(404).json({noPostFound: "No post found"})})
 })
 
 module.exports = router;

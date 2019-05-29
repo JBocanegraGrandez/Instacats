@@ -1,5 +1,5 @@
 import axios from 'axios';
 
-export const createComment = postId => {
-  return axios.post(`api/comments/${postId}`);
+export const writeComment = data => {
+  return axios.post(`/api/comments/${data.postId}`, data);
 };

@@ -6,6 +6,12 @@ class PostBox extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            body: '',
+            postId: this.props.post._id
+        }
+
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
     getDatefromString(str) {
         let MONTHS = {
@@ -26,6 +32,31 @@ class PostBox extends React.Component {
         return MONTHS[str[5]+str[6]] +" " + str[8] +str[9] +", " + str.slice(0,4)
     }
 
+    update(field) {
+        return e => {
+            this.setState({ [field]: e.currentTarget.value });
+
+        }
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+
+        let comment = {
+            body: this.state.body,
+            postId: this.state.postId
+        };
+        this.props.addCommentToPost(comment);
+    }
+
+    isDisabled() {
+        if (this.state.body === '') {
+            return true
+        } else {
+            return false
+        }
+    }
+
     getLikeButton(post){
         if (post.likes.filter( id => id.toString() === this.props.currentUser._id.toString()).length === 0 ) {
             return (
@@ -39,6 +70,14 @@ class PostBox extends React.Component {
                 </span>)  
                 }
     }
+
+    createComment(comment) {
+        this.props.addCommentToPost(comment)
+            .then(() => {
+                this.props.fetchPosts()
+            })
+    }
+
     render() {
         return (
           <article className="Postbox-article">
@@ -95,9 +134,15 @@ class PostBox extends React.Component {
             <section className="Postbox-input">
                 <div className="Postbox-form-wrapper">
                     
-                    <form className="Postbox-form">
-                        <textarea placeholder="Add a comment…" className="Create-comment" autoComplete="off" autoCorrect="off"></textarea>
-                        <button className="Create-comment-button">Post</button>
+                    <form className="Postbox-form" onSubmit={this.handleSubmit}>
+                        <textarea placeholder="Add a comment…" 
+                            className="Create-comment" 
+                            autoComplete="off" 
+                            autoCorrect="off" 
+                            value={this.state.body}
+                            onChange={this.update('body')}
+                             />
+                        <button className="Create-comment-button" type="submit" disabled={this.isDisabled()}>Post</button>
                     </form>
                 </div>
             </section>
