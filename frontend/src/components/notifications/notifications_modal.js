@@ -16,6 +16,8 @@ class NotificationModal extends React.Component {
     createNotificationBody(notification) {
         if (notification.type === "FOLLOW") {
             return " started following you."
+        } else if (notification.type === "LIKE_PHOTO") {
+            return " liked your photo."
         }
     }
 
@@ -25,14 +27,18 @@ class NotificationModal extends React.Component {
                         currentUser ={this.props.currentUser}
                         user={this.props.users[notification.author]}
                     /> 
+        } else if (notification.type === "LIKE_PHOTO") {
+            // debugger
+            // return (
+            //     <Link to={'username'} className="Notification-li-event-pic-wrapper">
+            //         <div className="Notification-li-event-pic-holder">
+            //             <div className="Notification-li-event-pic-div">
+            //                 <img className="Notification-event-pic" src={this.props.posts[notification.postId].img} alt="cat"></img>
+            //             </div>
+            //         </div>
+            //     </Link>
+            // )
         }
-        // <Link to={'username'} className="Notification-li-event-pic-wrapper">
-        //     <div className="Notification-li-event-pic-holder">
-        //         <div className="Notification-li-event-pic-div">
-        //             <img className="Notification-event-pic" src="https://img.purch.com/w/660/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzEwNC84MzAvb3JpZ2luYWwvc2h1dHRlcnN0b2NrXzExMTA1NzIxNTkuanBn" alt="cat"></img>
-        //         </div>
-        //     </div>
-        // </Link>
     }
 
     stopProp(e) {

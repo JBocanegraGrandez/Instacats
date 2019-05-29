@@ -4,6 +4,8 @@ const passport = require("passport");
 const validatePostInput = require("../../validation/posts");
 const Post = require("../../models/Post");
 const mongoose = require('mongoose');
+const Notification = require('../../models/Notification');
+const User = require("../../models/User");
 
 
 // Get all Posts
@@ -74,7 +76,15 @@ router.post("/:id/like",
         Post.findOne({_id: req.params.id})
             .then(post =>{
                 if (post) {
-                    if (post.likes)
+                    User.findOne({_id: post.user})
+                        .then(user => {
+                            const newNotification = new Notification({
+                                author: req.user._id,
+                                type: "LIKE_PHOTO"
+                            })
+                            user.notifications.push(newNotification);
+                           return user.save()
+                        })
                     post.likes.push(req.user._id)
                     post.save().then( post => res.json(post))
                 } else {

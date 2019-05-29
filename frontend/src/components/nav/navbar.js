@@ -82,6 +82,7 @@ class NavBar extends React.Component {
               modifyModal={this.modifyModal}
               currentUser={this.props.currentUser}
               users={this.props.users}
+              posts={this.props.posts}
             />
           </div>
           <div>

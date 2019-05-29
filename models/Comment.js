@@ -13,6 +13,11 @@ const CommentSchema = new Schema({
         required: true
     },
 
+    postId: {
+        type: Schema.Types.ObjectId,
+        ref: 'posts'
+    },
+
     comments: [],
 
     date: {
