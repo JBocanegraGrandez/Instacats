@@ -25,7 +25,8 @@ class NavBar extends React.Component {
     this.getLinks = this.getLinks.bind(this);
   }
 
-  componentDidMount(){
+  componentWillMount(){
+    // this.props.fetchPosts();
     this.setState({notificationsModal: false})
   }
 

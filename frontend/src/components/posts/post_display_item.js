@@ -1,10 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './post.css';
 
 class PostDisplayItem extends React.Component {
   render() {
     return (
       <div className="Post-display-item-wrapper">
+      <Link to ={`/post/${this.props._id}`}>
         <span>
             <div className="Post-display-item-holder">
                 <div className="Post-display-item">
@@ -12,7 +14,7 @@ class PostDisplayItem extends React.Component {
                 </div>
             </div>
         </span>
-        
+      </Link>
       </div>
     )
   }

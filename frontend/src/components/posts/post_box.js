@@ -57,7 +57,7 @@ class PostBox extends React.Component {
         }
     }
 
-    getLikeButton(post){
+    getPostLikeButton(post){
         if (post.likes.filter( id => id.toString() === this.props.currentUser._id.toString()).length === 0 ) {
             return (
             <span className="Postbox-button-holder-first" onClick={() => this.props.addLikeToPost(this.props.post._id)}>
@@ -69,6 +69,22 @@ class PostBox extends React.Component {
                     <button className="Postbox-interactive-button"><span className="Span-dislike"></span></button>
                 </span>)  
                 }
+    }
+
+    getCommentLikeButton(comment) {
+         if (comment.likes.filter( id => id.toString() === this.props.currentUser._id.toString()).length === 0) {
+             return (
+                 <span className="Li-comment-like-wrapper">
+                     <button className="Li-comment-like-button">
+                         <span className="Li-comment-like"></span>
+                     </button>
+                 </span>
+             )
+         } else {
+             return (
+                 <span>nothing</span>
+             )
+         }
     }
 
     createComment(comment) {
@@ -104,7 +120,7 @@ class PostBox extends React.Component {
             </div>
             <div>
                 <section className="Postbox-interactive">
-                    {this.getLikeButton(this.props.post)}
+                    {this.getPostLikeButton(this.props.post)}
                     <span className="Postbox-button-holder-between">
                         <button className="Postbox-interactive-button"><span className="Span-comment"></span></button>
                     </span>
@@ -122,8 +138,11 @@ class PostBox extends React.Component {
                         {this.props.post.comments.map(comment => {
                             return (
                                 <li className="Li-comment" key={comment._id}>
-                                    <div className="Div-comment">
-                                        <h2 className="username"><Link to={`hello`} className="username-link">{this.props.users[comment.author].username}</Link></h2><span>{comment.body}</span>
+                                    <div className="Div-comment-wrapper">
+                                        <div className="Div-comment">
+                                            <h2 className="username"><Link to={`hello`} className="username-link">{this.props.users[comment.author].username}</Link></h2><span>{comment.body}</span>
+                                        </div>
+                                       {this.getCommentLikeButton(comment)}
                                     </div>
                                 </li>
                             )

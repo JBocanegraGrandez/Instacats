@@ -10,8 +10,9 @@ import SignupFormContainer from './session/signup_form_container';
 import ProfileContainer from '../components/profile/profile_container';
 import PostsContainer from "../components/posts/posts_container";
 import PostComposeContainer from "../components/posts/post_compose_container";
-import EditProfile from '../components/profile/edit_profile_container'
-import EditPassword from '../components/profile/edit_password_container'
+import EditProfile from '../components/profile/edit_profile_container';
+import EditPassword from '../components/profile/edit_password_container';
+import PostDisplay from '../components/posts/post_display_container';
 
 import FileUpload from '../components/upload/file_upload'
 
@@ -31,6 +32,7 @@ const App = () => (
          <ProtectedRoute exact path="/posts/new" component={PostComposeContainer} />
          <ProtectedRoute exact path="/profile" component={ProfileContainer} />
          <ProtectedRoute exact path="/new_post" component={PostComposeContainer} />
+         <ProtectedRoute exact path="/post/:postId" component={PostDisplay} />
          <ProtectedRoute path="/:username" component={ProfileContainer} />
      </Switch>
         <Footer />

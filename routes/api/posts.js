@@ -80,7 +80,8 @@ router.post("/:id/like",
                         .then(user => {
                             const newNotification = new Notification({
                                 author: req.user._id,
-                                type: "LIKE_PHOTO"
+                                type: "LIKE_PHOTO",
+                                postId: post._id
                             })
                             user.notifications.push(newNotification);
                            return user.save()

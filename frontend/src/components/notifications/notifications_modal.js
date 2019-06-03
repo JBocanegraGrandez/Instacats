@@ -18,6 +18,8 @@ class NotificationModal extends React.Component {
             return " started following you."
         } else if (notification.type === "LIKE_PHOTO") {
             return " liked your photo."
+        } else if (notification.type === "NEW_COMMENT"){
+            return " commented on your photo"
         }
     }
 
@@ -28,16 +30,21 @@ class NotificationModal extends React.Component {
                         user={this.props.users[notification.author]}
                     /> 
         } else if (notification.type === "LIKE_PHOTO") {
-            // debugger
-            // return (
-            //     <Link to={'username'} className="Notification-li-event-pic-wrapper">
-            //         <div className="Notification-li-event-pic-holder">
-            //             <div className="Notification-li-event-pic-div">
-            //                 <img className="Notification-event-pic" src={this.props.posts[notification.postId].img} alt="cat"></img>
-            //             </div>
-            //         </div>
-            //     </Link>
-            // )
+            const post = this.props.posts[notification.postId]
+            const imgSrc = post ? post.img : ""
+            
+            return (
+                <Link to={'username'} className="Notification-li-event-pic-wrapper">
+                    <div className="Notification-li-event-pic-holder">
+                        <div className="Notification-li-event-pic-div">
+                            <img className="Notification-event-pic" src={imgSrc} alt="cat"></img>
+                        </div>
+                    </div>
+                </Link>
+            )
+        } else if (notification.type === "LIKE_COMMENT") {
+            
+        } else if (notification.type === "NEW_COMMENT") {
         }
     }
 
@@ -65,7 +72,7 @@ class NotificationModal extends React.Component {
                         <div className="Notification-holder">
                             <div className="Notification-holder-2">
                                 <ul className="Notification-holder-div">
-                                {notificationsArr.map( notification => {
+                                {notificationsArr.reverse().map( notification => {
                                     return(
                                         <li className="Notification-div-li" key={notification._id}>
                                             <div className="Notification-li-profile-pic-wrapper">

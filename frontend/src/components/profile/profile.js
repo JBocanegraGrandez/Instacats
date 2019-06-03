@@ -46,10 +46,10 @@ class Profile extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.match.params.username !== this.props.match.params.username) {
+      this.modifyModal("followingModal", false)
+      this.modifyModal("followersModal", false)
       this.props.fetchUser(this.props.match.params.username).then(() => {
         this.props.fetchUserPosts(this.props.user._id)
-        this.modifyModal("followingModal", false)
-        this.modifyModal("followersModal", false)
       });
     }
   }
@@ -61,7 +61,7 @@ class Profile extends React.Component {
       return (
         <div className="Post-display-row">
           {this.props.posts.map(post => (
-            <PostDisplayItem key={post._id} url={post.img} date={post.date} />
+            <PostDisplayItem _id={post._id} key={post._id} url={post.img} date={post.date} />
           ))}
         </div>
       );

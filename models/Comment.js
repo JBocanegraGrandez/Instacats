@@ -20,6 +20,8 @@ const CommentSchema = new Schema({
 
     comments: [],
 
+    likes: [{ type: Schema.Types.ObjectId, ref: 'users' }],
+
     date: {
         type: Date,
         default: Date.now
