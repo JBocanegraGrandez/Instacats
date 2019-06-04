@@ -11,8 +11,9 @@ const Notification = require('../../models/Notification')
 router.post("/:postId", passport.authenticate("jwt", {session: false}), (req, res) => {
     debugger
     Post.findById(req.params.postId)
+        .populate('user')
         .then(post => {
-            User.findOne({_id: post.user.toString()})
+            User.findOne({_id: post.user._id})
                 .then( user => {
                     const newNotification = new Notification({
                         author: req.user._id,

@@ -36,6 +36,7 @@ router.get("/", (req, res) => {
 // Get all post from single user 
 router.get('/user/:user_id', (req, res) => {
     Post.find({user: req.params.user_id})
+        .populate('user')
         .then(posts => res.json(posts))
         .catch(err => res.status(404).json({noPostsFound: 'No Posts found for user'}))
 })
@@ -44,6 +45,7 @@ router.get('/user/:user_id', (req, res) => {
 
 router.get('/:id', (req, res) => {
     Post.findById(req.params.id)
+    .populate('user')
     .then(post => res.json(post))
     .catch(err => res.status(404).json({noPostFound: 'No Post found with matching ID'}))
 })

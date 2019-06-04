@@ -89,9 +89,7 @@ class PostBox extends React.Component {
 
     createComment(comment) {
         this.props.addCommentToPost(comment)
-            .then(() => {
-                this.props.fetchPosts()
-            })
+            
     }
 
     render() {
