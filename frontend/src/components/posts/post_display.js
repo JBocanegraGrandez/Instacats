@@ -123,7 +123,7 @@ class PostDisplay extends React.Component {
                             
                         </div>
                     </div>
-                    <div style={{display:'flex', flexDirection: 'column'}}>
+                    <div style={{display:'flex', flexDirection: 'column', width: '335px'}}>
 
                         <header className="Article-header-1 Article-header-2 Article-header3">
                         <div className="Post-article-pic-holder">

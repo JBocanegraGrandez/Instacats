@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import "./post.css"
+import { parse, distanceInWordsToNow } from 'date-fns';
 
 class PostBox extends React.Component {
     constructor(props) {
@@ -14,22 +15,7 @@ class PostBox extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }
     getDatefromString(str) {
-        let MONTHS = {
-            "01": "January",
-            "02": "February",
-            "03": "March",
-            "04": "April",
-            "05": "May",
-            "06": "June",
-            "07": "July",
-            "08": "August",
-            "09": "September",
-            "10": "October",
-            "11": "November",
-            "12": "December"
-        }
-
-        return MONTHS[str[5]+str[6]] +" " + str[8] +str[9] +", " + str.slice(0,4)
+        return distanceInWordsToNow(parse(str), {addSuffix: true});
     }
 
     update(field) {

@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './notifications_modal.css';
 import FolloworUnfollowButton from '../follow/follow_or_unfollow_button_container';
+import { parse, distanceInWordsToNow } from "date-fns";
+
 
 class NotificationModal extends React.Component {
 
@@ -13,13 +15,17 @@ class NotificationModal extends React.Component {
         }
     }
 
-    createNotificationBody(notification) {
+    createNotificationBody(notification, posts) {
         if (notification.type === "FOLLOW") {
             return " started following you."
         } else if (notification.type === "LIKE_PHOTO") {
             return " liked your photo."
         } else if (notification.type === "NEW_COMMENT"){
-            return " commented on your photo"
+            
+            let foundComment = posts[notification.postId].comments.filter(
+                comment => comment._id === notification.commentId
+            )
+            return " commented on your photo: " +`${foundComment[0].body}`
         }
     }
 
@@ -29,7 +35,7 @@ class NotificationModal extends React.Component {
                         currentUser ={this.props.currentUser}
                         user={this.props.users[notification.author]}
                     /> 
-        } else if (notification.type === "LIKE_PHOTO") {
+        } else if (notification.type === "LIKE_PHOTO" || notification.type === "NEW_COMMENT") {
             const post = this.props.posts[notification.postId]
             const imgSrc = post ? post.img : ""
             
@@ -43,8 +49,7 @@ class NotificationModal extends React.Component {
                 </Link>
             )
         } else if (notification.type === "LIKE_COMMENT") {
-            
-        } else if (notification.type === "NEW_COMMENT") {
+
         }
     }
 
@@ -55,11 +60,15 @@ class NotificationModal extends React.Component {
     render () {
         let notificationsArr
         let users
-        if (!this.props.currentUser || !this.props.users[this.props.currentUser._id]) {
+        let posts
+        if (!this.props.currentUser || !this.props.users[this.props.currentUser._id] || Object.keys(this.props.posts).length === 0) {
+            
             return ""
         } else {
-            notificationsArr = this.props.currentUser.notifications
+            
+            notificationsArr = this.props.currentUser.notifications.slice().reverse()
             users = this.props.users
+            posts = this.props.posts
             
         }
         return (
@@ -72,7 +81,7 @@ class NotificationModal extends React.Component {
                         <div className="Notification-holder">
                             <div className="Notification-holder-2">
                                 <ul className="Notification-holder-div">
-                                {notificationsArr.reverse().map( notification => {
+                                {notificationsArr.map( notification => {
                                     return(
                                         <li className="Notification-div-li" key={notification._id}>
                                             <div className="Notification-li-profile-pic-wrapper">
@@ -87,8 +96,8 @@ class NotificationModal extends React.Component {
                                             </div>
                                             <div className="Notification-li-text">
                                                 <Link to={`/${users[notification.author].username}`} className="Notification-li-text-Link">{users[notification.author].username}</Link>
-                                                {this.createNotificationBody(notification)}
-                                                <time className="Notification-li-text-time">4d</time>
+                                                {this.createNotificationBody(notification, posts)}
+                                                <time className="Notification-li-text-time">{distanceInWordsToNow(parse(notification.date), {addSuffix: true})}</time>
                                             </div>
                                             <div className="Notification-li-event">
                                                 {this.createNotificationTarget(notification)}

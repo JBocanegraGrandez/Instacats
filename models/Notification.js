@@ -24,6 +24,11 @@ const NotificationSchema = new Schema({
         ref: 'comments'
     },
 
+    parentCommentId: {
+        type: Schema.Types.ObjectId,
+        ref: 'comments'
+    },
+
     date: {
         type: Date,
         default: Date.now

@@ -10,6 +10,11 @@ const Notification = require('../../models/Notification')
 
 router.post("/:postId", passport.authenticate("jwt", {session: false}), (req, res) => {
     debugger
+    const newComment = new Comment({
+        author: req.user.id,
+        body: req.body.body,
+        postId: req.body.postId
+    })
     Post.findById(req.params.postId)
         .populate('user')
         .then(post => {
@@ -17,16 +22,14 @@ router.post("/:postId", passport.authenticate("jwt", {session: false}), (req, re
                 .then( user => {
                     const newNotification = new Notification({
                         author: req.user._id,
-                        type: "NEW_COMMENT"
+                        type: "NEW_COMMENT",
+                        postId: req.body.postId,
+                        commentId: newComment._id
                     })
                     user.notifications.push(newNotification);
                     return user.save()
                 })
-            const newComment = new Comment({
-                author: req.user.id,
-                body: req.body.body,
-                postId: req.body.postId
-            })
+           
 
            post.comments.push(newComment);
            post.save().then(post => res.json(post))
