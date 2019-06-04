@@ -79,14 +79,14 @@ class NotificationModal extends React.Component {
                                                 <div className="Notification-li-profile-pic-holder">
                                                     <div className="Notification-li-profile-pic">
                                                         <canvas className="Notification-li-canvas"></canvas>
-                                                            <Link to={`${users[notification.author].username}`} className="Notification-li-Link">
+                                                            <Link to={`/${users[notification.author].username}`} className="Notification-li-Link">
                                                             <img className="Notification-li-pic" src={users[notification.author].profileURL || "http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"} alt="cat"></img>
                                                             </Link>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div className="Notification-li-text">
-                                                <Link to={`${users[notification.author].username}`} className="Notification-li-text-Link">{users[notification.author].username}</Link>
+                                                <Link to={`/${users[notification.author].username}`} className="Notification-li-text-Link">{users[notification.author].username}</Link>
                                                 {this.createNotificationBody(notification)}
                                                 <time className="Notification-li-text-time">4d</time>
                                             </div>
