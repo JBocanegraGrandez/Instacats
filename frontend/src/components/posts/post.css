@@ -358,7 +358,7 @@
     height: 190px;
     width: 190px;
     margin: 2px 32px 0 124px;
-    background-color: #3897f0;
+    /* background-color: #3897f0; */
     flex-shrink: 0;
 }
 

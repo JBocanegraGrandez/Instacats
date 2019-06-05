@@ -6,7 +6,7 @@ import kitty from '../../kitty-small.png';
 import heart from '../../heart-small.png';
 import compass from '../../compass-small.png';
 import NotificationModal from "../notifications/notifications_modal";
-import CreatePostModal from "../upload/file_upload"
+import CreatePostModal from "../upload/post_create"
 
 import "./nav.css"; 
 
@@ -60,8 +60,11 @@ class NavBar extends React.Component {
               <CreatePostModal
                 show={this.state.createPostModal}
                 modifyModal={this.modifyModal}
+                toogleModal={() => this.toogleModal('createPostModal')}
                 title="Create new Post"
                 type="NEW_POST"
+                receiveNewPost={this.props.receiveNewPost}
+                currentUser={this.props.currentUser}
               />
           </div>
           <div className="link-icon">

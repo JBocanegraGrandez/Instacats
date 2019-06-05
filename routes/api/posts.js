@@ -7,6 +7,8 @@ const mongoose = require('mongoose');
 const Notification = require('../../models/Notification');
 const User = require("../../models/User");
 
+const upload = require('../../services/upload')
+const singleUpload = upload.single('image');
 
 // Get all Posts
 router.get("/", (req, res) => {
@@ -53,23 +55,33 @@ router.get('/:id', (req, res) => {
 // Create new Post
 
 router.post("/", 
+    singleUpload,
     passport.authenticate("jwt", {session: false}),
     (req, res) => {
-        const { errors, isValid} = validatePostInput(req.body);
+        // const { errors, isValid} = validatePostInput(req.body);
 
-        if(!isValid) {
-            return res.status(400).json(errors);
-        }
-
+        // if(!isValid) {
+        //     return res.status(400).json(errors);
+        // }
+        
         const newPost = new Post({
             user: req.user.id,
             caption: req.body.caption,
             location: req.body.location,
             tags: req.body.tags,
-            img: req.body.img
-        })
+            img: req.file.location
+        });
         
-        newPost.save().then(post => res.json(post));
+        newPost.save().then(post => {
+            User.findOne({ _id: req.user._id})
+                .then(currentUser => {
+                    currentUser.posts.push(post._id);
+                    return currentUser.save()
+                })
+
+            res.json(post)
+        })
+            
 })
 
 router.post("/:id/like", 

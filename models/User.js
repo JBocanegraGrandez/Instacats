@@ -39,6 +39,8 @@ const UserSchema = new Schema({
         required: false
     },
 
+    posts: [{type: Schema.Types.ObjectId, ref: 'posts'}],
+
 
     notifications: [{type: Notification}],
 
