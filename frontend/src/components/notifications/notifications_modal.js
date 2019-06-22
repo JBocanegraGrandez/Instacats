@@ -20,6 +20,12 @@ class NotificationModal extends React.Component {
             return " started following you."
         } else if (notification.type === "LIKE_PHOTO") {
             return " liked your photo."
+        } else if (notification.type == "LIKE_COMMENT") {
+            let foundComment = posts[notification.postId].comments.filter(
+                comment => comment._id === notification.commentId
+            )
+            return " liked your comment: " + `${foundComment[0].body}`
+        
         } else if (notification.type === "NEW_COMMENT"){
             
             let foundComment = posts[notification.postId].comments.filter(
@@ -35,7 +41,7 @@ class NotificationModal extends React.Component {
                         currentUser ={this.props.currentUser}
                         user={this.props.users[notification.author]}
                     /> 
-        } else if (notification.type === "LIKE_PHOTO" || notification.type === "NEW_COMMENT") {
+        } else if (notification.type === "LIKE_PHOTO" || notification.type === "NEW_COMMENT" || notification.type === "LIKE_COMMENT") {
             const post = this.props.posts[notification.postId]
             const imgSrc = post ? post.img : ""
             

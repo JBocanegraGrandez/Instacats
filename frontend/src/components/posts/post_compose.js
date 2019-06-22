@@ -53,7 +53,7 @@ class PostCompose extends React.Component {
               <form onSubmit={this.handleSubmit} className="Profile-edit-wrapper">
                 <div className="Post-new-header-holder">
                   <div className="Post-new-header-pic-wrapper">
-                    <img style={{height: '100%'}}src={this.props.newPost.dataURL} />
+                    <img style={{maxWidth: '100%'}}src={this.props.newPost.dataURL} />
                   </div>
                   <div className="Post-new-header-details">
                     <div className="Post-new-caption-holder">
@@ -69,7 +69,7 @@ class PostCompose extends React.Component {
                   </div>
                 </div>
                 <div className="New-Post-Input-holder">
-                  <div className="New-Post-Input-wrapper">
+                  {/* <div className="New-Post-Input-wrapper">
                     <aside className="New-Post-aside">
                         <label htmlFor="input-tag">Tag People</label>
                     </aside>
@@ -84,7 +84,7 @@ class PostCompose extends React.Component {
                     <div className="New-Post-div">
                         <input id="input-location" />
                     </div>
-                  </div>
+                  </div> */}
                   <div className="New-Post-Input-wrapper">
                     <aside className="New-Post-aside">
                         <label></label>

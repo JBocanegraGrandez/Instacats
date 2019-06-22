@@ -1,0 +1,78 @@
+.Main-Page-Wrapper {
+    min-height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.Main-Page-Holder {
+    background-color: #fafafa;
+    flex-grow: 1;
+    display: flex;
+    order: 4;
+}
+
+.Main-Page-Article {
+    flex-direction: row;
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    margin: 30px auto 0;
+    max-width: 935px;
+    padding-bottom: 44px;
+    width: 100%;
+}
+
+.Main-Page-Phone {
+    align-self: center;
+    background-image: url('https://www.instagram.com/static/images/homepage/home-phones.png/43cc71bb1b43.png');
+    background-position: 0 0;
+    background-size: 454px 618px;
+    flex-basis: 454px;
+    height: 618px;
+    margin-left: -35px;
+    margin-right: -15px;
+}
+
+.Main-Page-Phone-Holder {
+    margin: 99px 0 0 151px;
+    position: relative;
+}
+
+.Phone-1 {
+    height: 427px;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    visibility: hidden;
+    width: 240px;
+}
+
+.Phone-3 {
+    transition: opacity 1.5s ease-in;
+    z-index: 2;
+}
+
+.Phone-2, .Phone-3 {
+    opacity: 1;
+    visibility: visible;
+}
+
+.Main-Page-Image-Transition {
+    transition: opacity 1.5s ease-in;
+    opacity: 0;
+    height: 427px;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    visibility: hidden;
+    width: 240px;
+}
+
+.Main-Page-Image-Transition-Show {
+    opacity: 1;
+    
+}

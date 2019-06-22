@@ -355,8 +355,8 @@
 }
 
 .Post-new-header-pic-wrapper {
-    height: 190px;
-    width: 190px;
+    /* height: 190px; */
+    width: 360px;
     margin: 2px 32px 0 124px;
     /* background-color: #3897f0; */
     flex-shrink: 0;
