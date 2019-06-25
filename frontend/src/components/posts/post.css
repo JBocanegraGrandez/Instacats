@@ -20,6 +20,10 @@
     padding-top: 60px;
 }
 
+.Postbox-article:last-child {
+    margin-bottom: 0;
+}
+
 .Postbox-wide {
     display: flex;
     flex-flow: row nowrap;
@@ -339,7 +343,6 @@
 .Post-display-item {
     display: block;
     overflow: hidden;
-    padding-bottom: 100%;
 }
 
 .Post-display-item-pic {
@@ -349,7 +352,8 @@
 }
 
 .Post-display-row{
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     flex-direction: row;
     margin-bottom: 28px;
 }

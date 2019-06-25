@@ -59,11 +59,15 @@ class Profile extends React.Component {
       return <div>No Posts</div>;
     } else {
       return (
-        <div className="Post-display-row">
-          {this.props.posts.map(post => (
-            <PostDisplayItem _id={post._id} key={post._id} url={post.img} date={post.date} />
-          ))}
-        </div>
+        Array(Math.ceil(this.props.posts.length/3)).fill('null').map( (n, row) => {
+          return (
+          <div className="Post-display-row">
+            {this.props.posts.slice(row*3, row*3 + 3).map(post => (
+              <PostDisplayItem _id={post._id} key={post._id} url={post.img} date={post.date} />
+            ))}
+          </div>
+          )
+        })
       );
     }
   }
@@ -171,7 +175,7 @@ class Profile extends React.Component {
             </span>
           </div>
           <div className="Profile-holder-posts" />
-          <div>{this.isEmpty()}</div>
+          <div style={{paddingBottom: '50px'}}>{this.isEmpty()}</div>
         </div>
         <FollowList
           modalShow={this.state.followingModal}
