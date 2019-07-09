@@ -39,7 +39,7 @@ router.patch("/update", (req, res) => {
                   user.save()
                       .then(user => {
                           const payload = {
-                              id: user.id,
+                              _id: user.id,
                               username: user.username,
                               email: user.email,
                               description: user.description,

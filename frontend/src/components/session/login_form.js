@@ -14,6 +14,8 @@ class LoginForm extends React.Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.renderErrors = this.renderErrors.bind(this);
+        this.demoLogin = this.demoLogin.bind(this);
+        this.demoLoginAnimation = this.demoLoginAnimation.bind(this);
     }
 
     // Once the user has been authenticated, redirect to Profile
@@ -58,6 +60,34 @@ class LoginForm extends React.Component {
         } else {
             return false
         }
+    }
+
+    demoLoginAnimation() {
+        let demoEmail = Array.from('demo@gmail.com');
+        let demoPassword = Array.from('guestpassword')
+
+
+        for ( let i = 0; demoEmail.length > 0 ; i++) {
+            let state = this.state.email
+            console.log(demoEmail)
+            this.setState({ email: demoEmail.shift() })
+            console.log(state)
+
+        }
+
+    }
+
+    // Handle demo login
+    demoLogin() {
+        this.setState({email: 'demo@gmail.com'})
+        this.setState({password: 'guestpassword'})
+
+        let demoUser = {
+            email: this.setState.email,
+            password: this.state.password,
+        }
+
+        this.props.login(demoUser)
     }
 
 
@@ -135,7 +165,7 @@ class LoginForm extends React.Component {
                                         </div>
                                         <div className="Login-submit-button-holder">
                                             <button className="Login-demo-button" type="submit">
-                                                <div className="Login-submit-button-text">Demo Log In</div>
+                                                <div className="Login-submit-button-text" onClick={() => this.demoLogin()}>Demo Log In</div>
                                             </button>
                                         </div>
                                         <Link className="Login-reset-password" to={"/reset"}>Forgot password?</Link>

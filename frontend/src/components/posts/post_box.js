@@ -44,6 +44,7 @@ class PostBox extends React.Component {
     }
 
     getPostLikeButton(post){
+        
         if (post.likes.filter( id => id.toString() === this.props.currentUser._id.toString()).length === 0 ) {
             return (
             <span className="Postbox-button-holder-first" onClick={() => this.props.addLikeToPost(this.props.post._id)}>
