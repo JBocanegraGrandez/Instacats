@@ -106,7 +106,12 @@ class PostDisplay extends React.Component {
             return ""
         } else {
             posts = this.props.posts
-
+            
+        }
+        for (let i = 0; i < this.props.post.comments.length; i++) {
+           if (!this.props.users[this.post.comments[i].author]) {
+               return ""
+           }
         }
         return (
             <div className="Profile-wrapper">

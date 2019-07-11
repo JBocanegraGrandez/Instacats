@@ -80,6 +80,11 @@ class PostBox extends React.Component {
     }
 
     render() {
+        for (let i = 0; i < this.props.post.comments.length; i++) {
+            if (!this.props.users[this.props.post.comments[i].author]) {
+                return ""
+            }
+        }
         return (
           <article className="Postbox-article">
             <header className="Postbox-header">
