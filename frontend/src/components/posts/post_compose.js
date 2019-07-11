@@ -96,7 +96,7 @@ class PostCompose extends React.Component {
                     </aside>
                     <div className="New-Post-div">
                         <div className="Edit-Profile-submit">
-                            <button className="Submit-button" type="submit" disabled={this.state.disabled}>Share</button>
+                            <button className="Submit-button2" type="submit" disabled={this.state.disabled}>Share</button>
                         </div>
                     </div>
                   </div>
