@@ -18,27 +18,31 @@ class SimpleReactFileUpload extends React.Component {
 
     onFormSubmit(e) {
         e.preventDefault() // Stop form submit
-        this.fileUpload(this.state.file).then((response) => {
-          const user = this.props.currentUser
-          user.profileURL = response.data['imageURL']
-          this.props.patchUser(user);
-            this.props.modifyModal(false);
-            this.setState({file: null});
-            this.props.history.push(`/${this.props.currentUser.username}`)
-        })
+        // this.fileUpload(this.state.file).then((response) => {
+        //   debuggerZ
+        //   const user = this.props.currentUser
+        //   user.profileURL = response.data['imageURL']
+        //   this.props.patchUser(user);
+        //     this.props.modifyModal(false);
+        //     this.setState({file: null});
+        //     this.props.history.push(`/${this.props.currentUser.username}`)
+        // })
     }
     onChange(e) {
         const reader = new FileReader()
         const file = e.target.files[0]
+        if (!file) {
+          return
+        }
         reader.readAsDataURL(e.target.files[0])
         reader.onload = (renderE => {
             const dataURL  = renderE.target.result
             
             this.props.receiveNewPost({dataURL, file})
             this.props.toogleModal()
+            this.setState({ file: null })
             this.props.history.push('/posts/new')
-        })
-        this.setState({ file: e.target.files[0] })
+          })
     }
     fileUpload(file) {
         const url = 'api/upload/';

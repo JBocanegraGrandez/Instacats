@@ -7,7 +7,8 @@ class PostCompose extends React.Component {
 
         this.state = {
             caption: "",
-            newPost: ""
+            newPost: "",
+            disabled: false
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,13 +19,17 @@ class PostCompose extends React.Component {
     // }
 
     handleSubmit(e) {
+        this.setState({disabled: true});
         e.preventDefault();
         let post = {
             caption: this.state.caption
         };
 
-        this.fileUpload();
-        this.setState({caption: ''})
+        this.fileUpload().then((response) => {
+            this.setState({caption: ''})
+            this.setState({disabled: false})
+            this.props.history.push(`/${this.props.currentUser.username}`)
+        })
     }
 
     fileUpload() {
@@ -91,7 +96,7 @@ class PostCompose extends React.Component {
                     </aside>
                     <div className="New-Post-div">
                         <div className="Edit-Profile-submit">
-                            <button className="Submit-button" type="submit">Share</button>
+                            <button className="Submit-button" type="submit" disabled={this.state.disabled}>Share</button>
                         </div>
                     </div>
                   </div>

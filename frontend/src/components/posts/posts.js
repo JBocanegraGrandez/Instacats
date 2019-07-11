@@ -27,7 +27,7 @@ class Post extends React.Component {
             return (
                 <main className='Posts-main'>
                     <section className="Postbox-narrow">
-                        {this.state.posts.map(post =>(
+                        {this.state.posts.reverse().map(post =>(
                             <PostBox key={post._id} post={post} 
                             removeLikeToPost={this.props.removeLikeToPost}
                             currentUser={this.props.currentUser}
