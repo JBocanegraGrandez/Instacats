@@ -602,5 +602,14 @@
         position: relative;
     }
     
+    .Post-loader {
+        min-height: calc(100vh - 177px);
+        display: flex;
+    }
+
+    .Post-loader h2 {
+        font-size: 20px;
+        margin: auto
+    }
     
 } 

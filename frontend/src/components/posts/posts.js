@@ -22,7 +22,7 @@ class Post extends React.Component {
 
     render(){
         if(this.state.posts.length === 0) {
-            return (<div>The are no Posts</div>)
+            return (<div className="Post-loader"><h2>Loading Posts</h2></div>)
         } else {
             return (
                 <main className='Posts-main'>
