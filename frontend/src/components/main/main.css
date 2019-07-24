@@ -60,12 +60,16 @@
     visibility: visible;
 }
 
+.phone-show {
+    visibility: visible;
+    opacity: 1;
+}
+
 .Main-Page-Image-Transition {
     transition: opacity 1.5s ease-in;
     opacity: 0;
     height: 427px;
     left: 0;
-    opacity: 0;
     position: absolute;
     top: 0;
     visibility: hidden;

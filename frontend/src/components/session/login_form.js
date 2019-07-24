@@ -66,28 +66,26 @@ class LoginForm extends React.Component {
         let demoEmail = Array.from('demo@gmail.com');
         let demoPassword = Array.from('guestpassword')
 
-
-        for ( let i = 0; demoEmail.length > 0 ; i++) {
-            let state = this.state.email
-            console.log(demoEmail)
-            this.setState({ email: demoEmail.shift() })
-            console.log(state)
-
+        for ( let i = 0; i < 5 ; i++) {
+            var letter = demoEmail.shift()
+            this.setState((prevState) => ({ email: prevState + letter }))
+        
         }
 
     }
 
     // Handle demo login
-    demoLogin() {
+    demoLogin(e) {
+        e.preventDefault()
         this.setState({email: 'demo@gmail.com'})
         this.setState({password: 'guestpassword'})
-
+        
         let demoUser = {
-            email: this.setState.email,
-            password: this.state.password,
+            email: 'demo@gmail.com',
+            password: 'guestpassword',
         }
 
-        this.props.login(demoUser)
+       setTimeout(() => this.props.login(demoUser), 1000)
     }
 
 
@@ -164,8 +162,8 @@ class LoginForm extends React.Component {
                                             <div className="Login-separator-line"></div>
                                         </div>
                                         <div className="Login-submit-button-holder">
-                                            <button className="Login-demo-button" type="submit">
-                                                <div className="Login-submit-button-text" onClick={() => this.demoLogin()}>Demo Log In</div>
+                                            <button className="Login-demo-button">
+                                                <div className="Login-submit-button-text" onClick={this.demoLogin}>Demo Log In</div>
                                             </button>
                                         </div>
                                         <Link className="Login-reset-password" to={"/reset"}>Forgot password?</Link>
